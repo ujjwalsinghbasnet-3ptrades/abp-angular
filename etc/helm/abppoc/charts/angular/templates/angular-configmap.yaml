@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}-configmap
+data:
+  dynamic-env.json: |-
+    {
+        "production": "true",
+        "application": {
+            "baseUrl": "{{ include "abppoc.hosts.angular" . }}",
+            "name": "AbpPoc",
+            "logoUrl": ""
+        },
+        "oAuthConfig": {
+            "issuer": "{{ include "abppoc.hosts.httpapi" . }}",
+            "redirectUri": "{{ include "abppoc.hosts.angular" . }}",
+            "requireHttps": "true",
+            "clientId": "AbpPoc_App",
+            "responseType": "code",
+            "scope": "offline_access AbpPoc",
+            "strictDiscoveryDocumentValidation": false,
+            "skipIssuerCheck": true
+        },
+        "apis": {
+            "default": {
+                "url": "{{ include "abppoc.hosts.httpapi" . }}",
+                "rootNamespace": "AbpPoc"
+            }
+        }
+    }

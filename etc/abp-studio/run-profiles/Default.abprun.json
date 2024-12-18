@@ -1,0 +1,42 @@
+﻿{
+  "applications": {
+    "Docker-Dependencies": {
+      "type": "cli",
+      "startCommand": "./up.ps1",
+      "stopCommand": "./down.ps1",
+      "workingDirectory": "../../docker",
+      "folder": "infrastructure",
+      "execution": {
+        "order": 5
+      }
+    },
+    "AbpPoc.Web.Public": {
+      "type": "dotnet-project",
+      "launchUrl": "https://localhost:44371",
+      "path": "../../../src/AbpPoc.Web.Public/AbpPoc.Web.Public.csproj",
+      "kubernetesService": ".*-webpublic$",
+      "execution": {
+        "order": 1
+      }
+    },
+    "AbpPoc.HttpApi.Host": {
+      "type": "dotnet-project",
+      "launchUrl": "https://localhost:44324",
+      "path": "../../../src/AbpPoc.HttpApi.Host/AbpPoc.HttpApi.Host.csproj",
+      "kubernetesService": ".*-httpapihost$",
+      "execution": {
+        "order": 4
+      }
+    },
+    "AbpPoc.Angular": {
+      "type": "cli",
+      "workingDirectory": "../../../angular",
+      "startCommand": "./start.ps1",
+      "launchUrl": "http://localhost:4200",
+      "kubernetesService": ".*-angular$",
+      "execution": {
+        "order": 2
+      }    
+    }
+  }
+}

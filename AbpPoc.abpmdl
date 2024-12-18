@@ -1,0 +1,133 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXTheme": {
+      "version": "4.0.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.TextTemplateManagement": {
+      "version": "9.0.2",
+      "isInstalled": true
+    },
+    "Volo.Chat": {
+      "version": "9.0.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.LanguageManagement": {
+      "version": "9.0.2",
+      "isInstalled": true
+    },
+    "Volo.FileManagement": {
+      "version": "9.0.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict.Pro": {
+      "version": "9.0.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.Gdpr": {
+      "version": "9.0.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.AuditLogging.Pro": {
+      "version": "9.0.2",
+      "isInstalled": true
+    },
+    "Volo.CmsKit.Pro": {
+      "version": "9.0.2",
+      "isInstalled": true
+    },
+    "Volo.Saas": {
+      "version": "9.0.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.Identity.Pro": {
+      "version": "9.0.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.Account.Pro": {
+      "version": "9.0.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "9.0.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "9.0.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "9.0.2",
+      "isInstalled": true
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "AbpPoc.Application": {
+      "path": "src/AbpPoc.Application/AbpPoc.Application.abppkg",
+      "folder": "src"
+    },
+    "AbpPoc.Application.Tests": {
+      "path": "test/AbpPoc.Application.Tests/AbpPoc.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "AbpPoc.Domain.Shared": {
+      "path": "src/AbpPoc.Domain.Shared/AbpPoc.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "AbpPoc.Application.Contracts": {
+      "path": "src/AbpPoc.Application.Contracts/AbpPoc.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "AbpPoc.HttpApi": {
+      "path": "src/AbpPoc.HttpApi/AbpPoc.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "AbpPoc.HttpApi.Client": {
+      "path": "src/AbpPoc.HttpApi.Client/AbpPoc.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "AbpPoc.EntityFrameworkCore.Tests": {
+      "path": "test/AbpPoc.EntityFrameworkCore.Tests/AbpPoc.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "AbpPoc.EntityFrameworkCore": {
+      "path": "src/AbpPoc.EntityFrameworkCore/AbpPoc.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "AbpPoc.TestBase": {
+      "path": "test/AbpPoc.TestBase/AbpPoc.TestBase.abppkg",
+      "folder": "test"
+    },
+    "AbpPoc.Domain.Tests": {
+      "path": "test/AbpPoc.Domain.Tests/AbpPoc.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "AbpPoc.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/AbpPoc.HttpApi.Client.ConsoleTestApp/AbpPoc.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "AbpPoc.DbMigrator": {
+      "path": "src/AbpPoc.DbMigrator/AbpPoc.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "AbpPoc.HttpApi.Host": {
+      "path": "src/AbpPoc.HttpApi.Host/AbpPoc.HttpApi.Host.abppkg",
+      "folder": "src"
+    },
+    "AbpPoc.Web.Public": {
+      "path": "src/AbpPoc.Web.Public/AbpPoc.Web.Public.abppkg",
+      "folder": "src"
+    },
+    "AbpPoc.Domain": {
+      "path": "src/AbpPoc.Domain/AbpPoc.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+image:
+  repository: "abppoc/angular"
+  tag: "latest"
+  pullPolicy: IfNotPresent
