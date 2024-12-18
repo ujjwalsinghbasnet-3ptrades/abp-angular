@@ -42,6 +42,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { APP_ROUTE_PROVIDER } from './route.provider';
 import { PARTS_PART_ROUTE_PROVIDER } from './parts/part/providers/part-route.provider';
+import { PART_TESTS_PART_TEST_ROUTE_PROVIDER } from './part-tests/part-test/providers/part-test-route.provider';
 
 @NgModule({
   declarations: [AppComponent],
@@ -100,6 +101,7 @@ import { PARTS_PART_ROUTE_PROVIDER } from './parts/part/providers/part-route.pro
     provideOpeniddictproConfig(),
     provideTextTemplateManagementConfig(),
     PARTS_PART_ROUTE_PROVIDER,
+    PART_TESTS_PART_TEST_ROUTE_PROVIDER,
   ],
   bootstrap: [AppComponent],
 })

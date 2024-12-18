@@ -132,6 +132,11 @@
     "Maxuoc": "Max uoc",
     "MaxuniqueId": "Max unique Id",
     "Maxnsn": "Max nsn",
-    "MaximageUrl": "Max image Url"
+    "MaximageUrl": "Max image Url",
+    "Permission:PartTests": "Part Tests",
+    "PartTests": "Part Tests",
+    "NewPartTest": "New Part Test",
+    "PartTest": "Part Test",
+    "Menu:PartTests": "Part Tests"
   }
 }

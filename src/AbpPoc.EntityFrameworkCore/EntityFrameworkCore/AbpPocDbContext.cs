@@ -1,3 +1,4 @@
+using AbpPoc.PartTests;
 using AbpPoc.Parts;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
@@ -34,6 +35,7 @@ public class AbpPocDbContext :
     ISaasDbContext,
     IIdentityProDbContext
 {
+    public DbSet<PartTest> PartTests { get; set; } = null!;
     public DbSet<Part> Parts { get; set; } = null!;
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
 
@@ -134,6 +136,28 @@ public class AbpPocDbContext :
                 b.Property(x => x.uniqueId).HasColumnName(nameof(Part.uniqueId));
                 b.Property(x => x.nsn).HasColumnName(nameof(Part.nsn)).IsRequired();
                 b.Property(x => x.imageUrl).HasColumnName(nameof(Part.imageUrl));
+            });
+
+        }
+        if (builder.IsHostDatabase())
+        {
+            builder.Entity<PartTest>(b =>
+            {
+                b.ToTable(AbpPocConsts.DbTablePrefix + "PartTests", AbpPocConsts.DbSchema);
+                b.ConfigureByConvention();
+                b.Property(x => x.partNumber).HasColumnName(nameof(PartTest.partNumber)).IsRequired();
+                b.Property(x => x.name).HasColumnName(nameof(PartTest.name)).IsRequired();
+                b.Property(x => x.cageCode).HasColumnName(nameof(PartTest.cageCode)).IsRequired();
+                b.Property(x => x.distributionStatement).HasColumnName(nameof(PartTest.distributionStatement)).IsRequired();
+                b.Property(x => x.toNumber).HasColumnName(nameof(PartTest.toNumber));
+                b.Property(x => x.smr).HasColumnName(nameof(PartTest.smr));
+                b.Property(x => x.niin).HasColumnName(nameof(PartTest.niin));
+                b.Property(x => x.fsc).HasColumnName(nameof(PartTest.fsc));
+                b.Property(x => x.wuc).HasColumnName(nameof(PartTest.wuc));
+                b.Property(x => x.uoc).HasColumnName(nameof(PartTest.uoc));
+                b.Property(x => x.uniqueId).HasColumnName(nameof(PartTest.uniqueId));
+                b.Property(x => x.nsn).HasColumnName(nameof(PartTest.nsn));
+                b.Property(x => x.imageUrl).HasColumnName(nameof(PartTest.imageUrl));
             });
 
         }

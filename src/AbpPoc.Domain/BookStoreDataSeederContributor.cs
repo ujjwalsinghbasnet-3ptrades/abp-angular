@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AbpPoc.Books;
+using AbpPoc.Parts;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Guids;
 
 namespace AbpPoc;
 
@@ -11,10 +13,14 @@ public class AbpPocDataSeederContributor
     : IDataSeedContributor, ITransientDependency
 {
     private readonly IRepository<Book, Guid> _bookRepository;
+    private readonly PartManager _partManager;
+    private readonly IGuidGenerator _guidGenerator;
 
-    public AbpPocDataSeederContributor(IRepository<Book, Guid> bookRepository)
+    public AbpPocDataSeederContributor(IRepository<Book, Guid> bookRepository, PartManager partManager, IGuidGenerator guidGenerator)
     {
         _bookRepository = bookRepository;
+        _partManager = partManager;
+        _guidGenerator = guidGenerator;
     }
 
     public async Task SeedAsync(DataSeedContext context)
@@ -43,5 +49,20 @@ public class AbpPocDataSeederContributor
                 autoSave: true
             );
         }
+
+
+        await _partManager.CreateAsync(
+            "Test Part",
+            "123456",
+            "1234",
+            "123456",
+            "123456",
+            "123456",
+            "123456",
+            "123456",
+            "123456",
+            "123456"
+        );
+
     }
 }

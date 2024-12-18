@@ -1,3 +1,4 @@
+using AbpPoc.PartTests;
 using System;
 using AbpPoc.Shared;
 using Volo.Abp.AutoMapper;
@@ -19,5 +20,8 @@ public class AbpPocApplicationAutoMapperProfile : Profile
 
         CreateMap<Part, PartDto>();
         CreateMap<Part, PartExcelDto>();
+
+        CreateMap<PartTest, PartTestDto>();
+        CreateMap<PartTest, PartTestExcelDto>();
     }
 }

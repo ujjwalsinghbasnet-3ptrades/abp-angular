@@ -25,6 +25,11 @@ public class AbpPocPermissionDefinitionProvider : PermissionDefinitionProvider
         partPermission.AddChild(AbpPocPermissions.Parts.Create, L("Permission:Create"));
         partPermission.AddChild(AbpPocPermissions.Parts.Edit, L("Permission:Edit"));
         partPermission.AddChild(AbpPocPermissions.Parts.Delete, L("Permission:Delete"));
+
+        var partTestPermission = myGroup.AddPermission(AbpPocPermissions.PartTests.Default, L("Permission:PartTests"));
+        partTestPermission.AddChild(AbpPocPermissions.PartTests.Create, L("Permission:Create"));
+        partTestPermission.AddChild(AbpPocPermissions.PartTests.Edit, L("Permission:Edit"));
+        partTestPermission.AddChild(AbpPocPermissions.PartTests.Delete, L("Permission:Delete"));
     }
 
     private static LocalizableString L(string name)

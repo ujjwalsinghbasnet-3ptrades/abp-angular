@@ -1,3 +1,4 @@
+using AbpPoc.PartTests;
 using AbpPoc.Parts;
 using System;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,6 +61,8 @@ public class AbpPocEntityFrameworkCoreModule : AbpModule
              * default repositories only for aggregate roots */
             options.AddDefaultRepositories(includeAllEntities: true);
             options.AddRepository<Part, Parts.EfCorePartRepository>();
+
+            options.AddRepository<PartTest, PartTests.EfCorePartTestRepository>();
 
         });
 
