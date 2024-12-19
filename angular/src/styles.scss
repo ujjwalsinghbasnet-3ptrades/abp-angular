@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
+@use "@progress/kendo-theme-bootstrap/scss/all.scss" as *;
 
 :root .lpx-theme-dark {
   --lpx-logo: url('/assets/images/logo/logo-light.svg');
@@ -56,5 +56,9 @@
     width: 20px;
     height: 20px;
     background-image: url('/assets/images/getting-started/x.svg');
+  }
+  ul {
+    padding: 0%;
+    margin: 0%;
   }
 }

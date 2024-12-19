@@ -1,12 +1,39 @@
 <abp-page>
-    <abp-page-title-container class="col">
-      <h2>Card View Title</h2>
-    </abp-page-title-container>
+  <abp-page-title-container class="col">
+    <h2>Card View Title</h2>
+  </abp-page-title-container>
 
-    <kendo-card>
-      <kendo-card-header>
-        <h2>Card View Title</h2>
-      </kendo-card-header>
-    </kendo-card>
+  <abp-page-toolbar-container class="col">
+    <div class="text-lg-end pt-2">
+      <button
+       
+        class="btn btn-primary btn-sm"
+        type="button"
+        (click)="create()"
+      >
+        <i class="fa fa-plus me-1" aria-hidden="true"></i>
+        {{ 'NewPart' }}
+      </button>
+    </div>
+  </abp-page-toolbar-container>
 
-  </abp-page>
+  <div class="k-grid-auto-cols-max k-d-grid k-grid-cols-3 k-gap-5 k-w-full">
+    <app-default-card
+      *ngFor="let part of parts"
+      [title]="part.title"
+      [imageUrl]="part.imageUrl"
+      [link]="part.link"
+      [iconClassName]="part.iconClassName"
+      [cardBody]="part.cardBody"
+      [renderCustomBody]="part.renderCustomBody"
+      [cardActionProps]="part.cardActionProps"
+    ></app-default-card>
+  </div>
+</abp-page>
+
+<!-- 
+@defer (when serviceDetail.isVisible) {
+  @if (serviceDetail.isVisible) {
+    <app-part-detail-modal />
+  }
+} -->

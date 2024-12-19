@@ -32,7 +32,6 @@ import {
     NgbDatepickerModule,
     NgbTimepickerModule,
     NgbDropdownModule,
-
     NgxValidateCoreModule,
 
     PageModule,
@@ -56,4 +55,6 @@ import {
     }
   `,
 })
-export class PartComponent extends AbstractPartComponent {}
+export class PartComponent extends AbstractPartComponent {
+
+}
