@@ -20,6 +20,7 @@ export const environment = {
   application: {
     baseUrl,
     name: 'AbpPoc',
+    logoUrl: 'assets/images/logo.png',
   },
   oAuthConfig,
   apis: {

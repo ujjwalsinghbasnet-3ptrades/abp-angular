@@ -30,6 +30,13 @@ function configureRoutes(routes: RoutesService) {
         layout: eLayoutType.application,
         requiredPolicy: 'AbpPoc.Books',
       },
+      {
+        path: 'part-card-view',
+        name: 'Part Card View',
+        iconClass: 'fas fa-cog',
+        layout: eLayoutType.application,
+        requiredPolicy: 'AbpPoc.Parts',
+      },
     ]);
   };
 }

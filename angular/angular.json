@@ -14,7 +14,7 @@
           "style": "scss"
         }
       },
-      "root": "",
+      "root": "angular",
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
