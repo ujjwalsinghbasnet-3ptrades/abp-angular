@@ -5,7 +5,7 @@ import { KENDO_CARD } from '@progress/kendo-angular-layout';
 @Component({
   selector: 'app-default-card',
   standalone: true,
-  imports: [KENDO_CARD, CommonModule],
+  imports: [KENDO_CARD, CommonModule,],
   templateUrl: './default-card.component.html',
   styleUrl: './default-card.component.scss',
 })

@@ -28,7 +28,14 @@
     <div *ngIf="renderCustomBody" [innerHTML]="renderCustomBody()"></div>
     <kendo-card-actions class="d-flex gap-2 mt-2">
       <ng-container *ngFor="let action of cardActionProps">
-        <button type="button" class="d-block btn btn-outline-primary w-100" (click)="action.onClick(dataItem)">{{ action.label }}</button>
+        <button
+          type="button"
+          class="d-block btn btn-outline-primary w-100"
+          (click)="action.onClick(dataItem)"
+          *ngIf="action.show"
+        >
+          {{ action.label }}
+        </button>
       </ng-container>
     </kendo-card-actions>
   </kendo-card-body>

@@ -23,6 +23,7 @@ import {
 } from './part.abstract.component';
 import { AbstractPartDetailViewService } from '../services/part-detail.abstract.service';
 import { PartCardViewComponent } from 'src/app/components/part-card-view/part-card-view.component';
+import { PartGridViewComponent } from 'src/app/components/part-grid-view/part-grid-view.component';
 
 @Component({
   selector: 'app-part',
@@ -42,6 +43,7 @@ import { PartCardViewComponent } from 'src/app/components/part-card-view/part-ca
     CommercialUiModule,
     PartDetailModalComponent,
     PartCardViewComponent,
+    PartGridViewComponent,
     ...ChildComponentDependencies,
   ],
   providers: [
