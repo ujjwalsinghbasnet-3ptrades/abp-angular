@@ -21,8 +21,8 @@ import {
   ChildTabDependencies,
   ChildComponentDependencies,
 } from './part.abstract.component';
-import { PartCardViewComponent } from 'src/app/part-card-view/part-card-view.component';
 import { AbstractPartDetailViewService } from '../services/part-detail.abstract.service';
+import { PartCardViewComponent } from 'src/app/components/part-card-view/part-card-view.component';
 
 @Component({
   selector: 'app-part',

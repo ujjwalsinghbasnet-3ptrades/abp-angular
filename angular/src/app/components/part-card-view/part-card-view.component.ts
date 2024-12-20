@@ -10,12 +10,12 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { KENDO_CARD } from '@progress/kendo-angular-layout';
-import { DefaultCardComponent } from '../components/default-card/default-card.component';
 import { CommonModule } from '@angular/common';
-import { PartDetailModalComponent } from '../parts/part/components/part-detail.component';
-import { PartDetailViewService } from '../parts/part/services/part-detail.service';
 import { PartDto } from '@proxy/parts';
-import { PartViewService } from '../parts/part/services/part.service';
+import { DefaultCardComponent } from '../default-card/default-card.component';
+import { PartDetailModalComponent } from 'src/app/parts/part/components/part-detail.component';
+import { PartDetailViewService } from 'src/app/parts/part/services/part-detail.service';
+import { PartViewService } from 'src/app/parts/part/services/part.service';
 
 @Component({
   selector: 'app-part-card-view',
