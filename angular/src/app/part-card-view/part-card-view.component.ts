@@ -1,5 +1,14 @@
 import { PageModule } from '@abp/ng.components/page';
-import { Component, inject, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  Input,
+  OnChanges,
+  OnInit,
+  Signal,
+  SimpleChanges,
+} from '@angular/core';
 import { KENDO_CARD } from '@progress/kendo-angular-layout';
 import { DefaultCardComponent } from '../components/default-card/default-card.component';
 import { CommonModule } from '@angular/common';
@@ -13,14 +22,13 @@ import { PartDetailModalComponent } from '../parts/part/components/part-detail.c
   templateUrl: './part-card-view.component.html',
   styleUrl: './part-card-view.component.scss',
 })
-export class PartCardViewComponent implements OnInit {
-  parts: any[] = [];
+export class PartCardViewComponent implements OnChanges {
+  @Input() parts: any[] = [];
+  cardParts: any[] = [];
 
-  constructor(private partService: PartService) {}
-
-  ngOnInit() {
-    this.partService.getList({ maxResultCount: 10 }).subscribe(parts => {
-      this.parts = parts.items.map(part => ({
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['parts'] && this.parts) {
+      this.cardParts = this.parts.map(part => ({
         title: part.name,
         link: `/part/${part.id}`,
         imageUrl: part.imageUrl,
@@ -36,28 +44,6 @@ export class PartCardViewComponent implements OnInit {
           uoc: part.uoc,
         },
       }));
-    });
-  }
-
-  create() {
-    this.partService
-      .create({
-        name: 'New Part',
-        partNumber: '123456',
-        cageCode: '123456',
-        toNumber: '123456',
-        nsn: '123456',
-      })
-      .subscribe(() => {
-        this.parts = [
-          ...this.parts,
-          {
-            title: 'New Part',
-            imageUrl: null,
-            iconClassName: 'fa fa-cogs fa-10x',
-            cardBody: {},
-          },
-        ];
-      });
+    }
   }
 }

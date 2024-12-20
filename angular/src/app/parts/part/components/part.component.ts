@@ -21,6 +21,7 @@ import {
   ChildTabDependencies,
   ChildComponentDependencies,
 } from './part.abstract.component';
+import { PartCardViewComponent } from 'src/app/part-card-view/part-card-view.component';
 
 @Component({
   selector: 'app-part',
@@ -39,6 +40,7 @@ import {
     ThemeSharedModule,
     CommercialUiModule,
     PartDetailModalComponent,
+    PartCardViewComponent,
     ...ChildComponentDependencies,
   ],
   providers: [
@@ -56,5 +58,9 @@ import {
   `,
 })
 export class PartComponent extends AbstractPartComponent {
+  selectedView: 'grid' | 'card' = 'grid';
 
+  onViewChange(view: 'grid' | 'card') {
+    this.selectedView = view;
+  }
 }
