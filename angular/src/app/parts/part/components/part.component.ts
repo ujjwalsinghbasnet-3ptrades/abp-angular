@@ -22,6 +22,7 @@ import {
   ChildComponentDependencies,
 } from './part.abstract.component';
 import { PartCardViewComponent } from 'src/app/part-card-view/part-card-view.component';
+import { AbstractPartDetailViewService } from '../services/part-detail.abstract.service';
 
 @Component({
   selector: 'app-part',
@@ -47,6 +48,10 @@ import { PartCardViewComponent } from 'src/app/part-card-view/part-card-view.com
     ListService,
     PartViewService,
     PartDetailViewService,
+    {
+      provide: AbstractPartDetailViewService,
+      useClass: PartDetailViewService,
+    },
     { provide: NgbDateAdapter, useClass: DateAdapter },
     { provide: NgbTimeAdapter, useClass: TimeAdapter },
   ],

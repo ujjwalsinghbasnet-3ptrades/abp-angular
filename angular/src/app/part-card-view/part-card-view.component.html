@@ -13,13 +13,14 @@
       [cardBody]="part.cardBody"
       [renderCustomBody]="part.renderCustomBody"
       [cardActionProps]="part.cardActionProps"
+      [dataItem]="part.dataItem"
     ></app-default-card>
   </div>
 </abp-page>
 
-<!-- 
-@defer (when serviceDetail.isVisible) {
-  @if (serviceDetail.isVisible) {
+
+@defer (when partDetailService.isVisible) {
+  @if (partDetailService.isVisible) {
     <app-part-detail-modal />
   }
-} -->
+}

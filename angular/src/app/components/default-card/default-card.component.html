@@ -1,8 +1,4 @@
-<kendo-card
-  class="k-block k-p-2 k-h-full"
-  orientation="vertical"
-  data-testid="card-container"
->
+<kendo-card class="k-block k-p-2 k-h-full" orientation="vertical" data-testid="card-container">
   <kendo-card-header class="k-display-flex k-align-items-center" *ngIf="title">
     <h5 kendoCardTitle class="k-text-capitalize k-text-truncate">{{ title }}</h5>
   </kendo-card-header>
@@ -30,5 +26,10 @@
       </li>
     </ul>
     <div *ngIf="renderCustomBody" [innerHTML]="renderCustomBody()"></div>
+    <kendo-card-actions class="d-flex gap-2 mt-2">
+      <ng-container *ngFor="let action of cardActionProps">
+        <button type="button" class="d-block btn btn-outline-primary w-100" (click)="action.onClick(dataItem)">{{ action.label }}</button>
+      </ng-container>
+    </kendo-card-actions>
   </kendo-card-body>
 </kendo-card>

@@ -12,8 +12,10 @@ import {
 import { KENDO_CARD } from '@progress/kendo-angular-layout';
 import { DefaultCardComponent } from '../components/default-card/default-card.component';
 import { CommonModule } from '@angular/common';
-import { PartService } from '@proxy/parts';
 import { PartDetailModalComponent } from '../parts/part/components/part-detail.component';
+import { PartDetailViewService } from '../parts/part/services/part-detail.service';
+import { PartDto } from '@proxy/parts';
+import { PartViewService } from '../parts/part/services/part.service';
 
 @Component({
   selector: 'app-part-card-view',
@@ -25,6 +27,14 @@ import { PartDetailModalComponent } from '../parts/part/components/part-detail.c
 export class PartCardViewComponent implements OnChanges {
   @Input() parts: any[] = [];
   cardParts: any[] = [];
+
+  constructor(
+    public partDetailService: PartDetailViewService,
+    public partService: PartViewService
+  ) {
+    this.partDetailService = partDetailService;
+    this.partService = partService;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['parts'] && this.parts) {
@@ -43,6 +53,21 @@ export class PartCardViewComponent implements OnChanges {
           wuc: part.wuc,
           uoc: part.uoc,
         },
+        dataItem: part,
+        cardActionProps: [
+          {
+            label: 'Edit',
+            onClick: (part: PartDto) => {
+              this.partDetailService.update(part);
+            },
+          },
+          {
+            label: 'Delete',
+            onClick: (part: PartDto) => {
+              this.partService.delete(part);
+            },
+          },
+        ],
       }));
     }
   }
