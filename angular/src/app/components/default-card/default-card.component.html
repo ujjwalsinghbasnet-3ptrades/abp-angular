@@ -1,21 +1,25 @@
-<kendo-card class="k-block k-p-2 k-h-full" orientation="vertical" data-testid="card-container">
-  <kendo-card-header class="k-display-flex k-align-items-center" *ngIf="title">
-    <h5 kendoCardTitle class="k-text-capitalize k-text-truncate">{{ title }}</h5>
-  </kendo-card-header>
-  <div
-    class="image-container k-overflow-hidden k-display-flex k-justify-content-center k-align-items-center k-p-lg"
-    style="height: 45%"
-  >
-    <ng-container *ngIf="imageUrl; else iconContent">
-      <img class="!k-object-fit-scale-down" [src]="imageUrl" data-testid="card-image" />
-    </ng-container>
-    <ng-template #iconContent>
-      <span class="k-h-full k-w-full k-display-flex k-justify-content-center k-align-items-center">
-        <i [class]="iconClassName"></i>
-      </span>
-    </ng-template>
-  </div>
-  <kendo-card-body class="!k-h-fit !k-px-2" data-testid="card-body">
+<abp-card [style.height]="'100%'" [cardStyle]="{maxWidth: '24rem'}">
+  <abp-card-header class="k-display-flex k-align-items-center" *ngIf="title">
+    <h5 class="abp-card-title k-text-capitalize k-text-truncate">{{ title }}</h5>
+  </abp-card-header>
+
+  <abp-card-body class="!k-h-fit !k-px-2" data-testid="card-body">
+    <div
+      class="image-container k-overflow-hidden k-display-flex k-justify-content-center k-align-items-center k-p-lg"
+      style="height: 45%"
+    >
+      <ng-container *ngIf="imageUrl; else iconContent">
+        <img class="!k-object-fit-scale-down" [src]="imageUrl" alt="Card Image" />
+      </ng-container>
+      <ng-template #iconContent>
+        <span
+          class="k-h-full k-w-full k-display-flex k-justify-content-center k-align-items-center"
+        >
+          <i [class]="iconClassName"></i>
+        </span>
+      </ng-template>
+    </div>
+
     <ul class="card-list k-font-italic !k-p-0 !k-m-0">
       <li
         *ngFor="let entry of cardBody | keyvalue"
@@ -25,18 +29,20 @@
         <span class="card-value">{{ entry.value }}</span>
       </li>
     </ul>
+
     <div *ngIf="renderCustomBody" [innerHTML]="renderCustomBody()"></div>
-    <kendo-card-actions class="d-flex gap-2 mt-2">
-      <ng-container *ngFor="let action of cardActionProps">
-        <button
-          type="button"
-          class="d-block btn btn-outline-primary w-100"
-          (click)="action.onClick(dataItem)"
-          *ngIf="action.show"
-        >
-          {{ action.label }}
-        </button>
-      </ng-container>
-    </kendo-card-actions>
-  </kendo-card-body>
-</kendo-card>
+  </abp-card-body>
+
+  <abp-card-footer [cardFooterStyle]="{display: 'flex', 'justify-content': 'space-between', gap: '1rem'}">
+    <ng-container *ngFor="let action of cardActionProps">
+      <button
+        type="button"
+        class="d-block btn btn-outline-primary w-100"
+        (click)="action.onClick(dataItem)"
+        *ngIf="action.show"
+      >
+        {{ action.label }}
+      </button>
+    </ng-container>
+  </abp-card-footer>
+</abp-card>

@@ -1,3 +1,4 @@
+import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { KENDO_CARD } from '@progress/kendo-angular-layout';
@@ -5,7 +6,7 @@ import { KENDO_CARD } from '@progress/kendo-angular-layout';
 @Component({
   selector: 'app-default-card',
   standalone: true,
-  imports: [KENDO_CARD, CommonModule,],
+  imports: [KENDO_CARD, CommonModule,ThemeSharedModule],
   templateUrl: './default-card.component.html',
   styleUrl: './default-card.component.scss',
 })
