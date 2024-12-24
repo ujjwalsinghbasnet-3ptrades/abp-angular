@@ -1,0 +1,16 @@
+<div class="w-100 mt-4 row">
+  <app-default-card
+    *ngFor="let document of cardDocuments"
+    [title]="document.title"
+    [link]="document.link"
+    [iconClassName]="document.iconClassName"
+    [cardBody]="document.cardBody"
+    [cardActionProps]="document.cardActionProps"
+    [dataItem]="document.dataItem"
+    class="col-4"
+  ></app-default-card>
+</div>
+
+@defer (when documentDetailService.isVisible) { @if (documentDetailService.isVisible) {
+<app-document-detail-modal />
+} }

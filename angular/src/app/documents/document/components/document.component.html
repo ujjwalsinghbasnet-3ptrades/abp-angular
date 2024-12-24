@@ -182,6 +182,10 @@
         </div>
       </div>
     </ng-container>
+
+    <ng-container *ngIf="selectedView === 'card'">
+      <app-document-card-view [documents]="service.data.items" class="w-100"/>
+    </ng-container>
   </div>
 </app-filtered-view>
 

@@ -23,6 +23,7 @@ import {
 } from './document.abstract.component';
 import { FilteredViewComponent } from 'src/app/components/filtered-view/filtered-view.component';
 import { AdvancedFiltersComponent } from 'src/app/common/advanced-filters/advanced-filters.component';
+import { DocumentCardViewComponent } from 'src/app/components/document-card-view/document-card-view.component';
 
 @Component({
   selector: 'app-document',
@@ -44,6 +45,7 @@ import { AdvancedFiltersComponent } from 'src/app/common/advanced-filters/advanc
     DocumentDetailModalComponent,
     FilteredViewComponent,
     AdvancedFiltersComponent,
+    DocumentCardViewComponent,
     ...ChildComponentDependencies,
   ],
   providers: [
