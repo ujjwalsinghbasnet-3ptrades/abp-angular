@@ -1,0 +1,21 @@
+<abp-page [title]="title + ' (0)'">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-lg-3 d-none d-md-block sidebar">
+        <div class="sidebar-sticky">
+          <ng-content select="[sidebar]"></ng-content>
+        </div>
+      </div>
+      <main class="col-md-9 ms-sm-auto col-lg-9 px-4">
+        <header>
+          <nav class="navbar navbar-expand-lg navbar-light bg-white px-2">
+            <ng-content select="[header]"></ng-content>
+          </nav>
+        </header>
+        <section class="content-section" style="width: 100%; overflow: hidden">
+          <ng-content select="[main-content]"></ng-content>
+        </section>
+      </main>
+    </div>
+  </div>
+</abp-page>

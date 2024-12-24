@@ -71,3 +71,16 @@
     margin: 0%;
   }
 }
+
+abp-advanced-entity-filters div.d-flex > div.ms-3{
+  margin-left: 0 !important;
+}
+
+abp-advanced-entity-filters-toggle {
+  margin-left: 0 !important;
+  display: none !important;
+}
+
+#advanced-content-filters {
+  display: block !important;
+}

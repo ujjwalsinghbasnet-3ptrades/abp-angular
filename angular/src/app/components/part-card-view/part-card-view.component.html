@@ -1,26 +1,18 @@
-<abp-page>
-  <abp-page-title-container class="col">
-    <h2>Card View Title</h2>
-  </abp-page-title-container>
+<div class="w-100 mt-4 row">
+  <app-default-card
+    *ngFor="let part of cardParts"
+    [title]="part.title"
+    [imageUrl]="part.imageUrl"
+    [link]="part.link"
+    [iconClassName]="part.iconClassName"
+    [cardBody]="part.cardBody"
+    [renderCustomBody]="part.renderCustomBody"
+    [cardActionProps]="part.cardActionProps"
+    [dataItem]="part.dataItem"
+    class="col-4"
+  ></app-default-card>
+</div>
 
-  <div class="k-grid-auto-cols-max k-d-grid k-grid-cols-4 k-gap-5 k-w-full">
-    <app-default-card
-      *ngFor="let part of cardParts"
-      [title]="part.title"
-      [imageUrl]="part.imageUrl"
-      [link]="part.link"
-      [iconClassName]="part.iconClassName"
-      [cardBody]="part.cardBody"
-      [renderCustomBody]="part.renderCustomBody"
-      [cardActionProps]="part.cardActionProps"
-      [dataItem]="part.dataItem"
-    ></app-default-card>
-  </div>
-</abp-page>
-
-
-@defer (when partDetailService.isVisible) {
-  @if (partDetailService.isVisible) {
-    <app-part-detail-modal />
-  }
-}
+@defer (when partDetailService.isVisible) { @if (partDetailService.isVisible) {
+<app-part-detail-modal />
+} }

@@ -1,0 +1,45 @@
+<abp-advanced-entity-filters
+  localizationSourceName=""
+  [list]="list"
+  entityFilterPlaceholder="Search..."
+  expanded="true"
+  [style]="{ display: 'flex', 'width': '100%' }"
+>
+  @if (filters; as filters) {
+  <abp-advanced-entity-filters-form expanded="true">
+    <form>
+      <div class="row">
+        <div *ngFor="let filter of filterConfig" class="col-12">
+          <div class="mb-3">
+            <label class="form-label" [for]="filter.key">
+              {{ filter.label | abpLocalization }}
+            </label>
+            <input
+              *ngIf="!filter.type || filter.type === 'text'"
+              [id]="filter.key"
+              class="form-control"
+              [(ngModel)]="filters[filter.key]"
+              [ngModelOptions]="{ standalone: true }"
+              (input)="onFilterChange()"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-auto align-self-end mb-3">
+          <div class="row">
+            <div class="col-6 col-sm-auto d-grid">
+              <button type="button" class="btn btn-outline-primary" (click)="clearFilters()">
+                <span>{{ 'AbpUi::Clear' | abpLocalization }}</span>
+              </button>
+            </div>
+            <div class="col-6 col-sm-auto d-grid">
+              <button type="button" class="btn btn-primary" (click)="refreshList()">
+                <span>{{ 'AbpUi::Refresh' | abpLocalization }}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </abp-advanced-entity-filters-form>
+  }
+</abp-advanced-entity-filters>

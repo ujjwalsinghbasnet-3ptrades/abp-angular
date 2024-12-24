@@ -24,6 +24,8 @@ import {
 import { AbstractPartDetailViewService } from '../services/part-detail.abstract.service';
 import { PartCardViewComponent } from 'src/app/components/part-card-view/part-card-view.component';
 import { PartGridViewComponent } from 'src/app/components/part-grid-view/part-grid-view.component';
+import { AdvancedFiltersComponent } from 'src/app/common/advanced-filters/advanced-filters.component';
+import { FilteredViewComponent } from 'src/app/components/filtered-view/filtered-view.component';
 
 @Component({
   selector: 'app-part',
@@ -44,6 +46,8 @@ import { PartGridViewComponent } from 'src/app/components/part-grid-view/part-gr
     PartDetailModalComponent,
     PartCardViewComponent,
     PartGridViewComponent,
+    AdvancedFiltersComponent,
+    FilteredViewComponent,
     ...ChildComponentDependencies,
   ],
   providers: [
@@ -69,5 +73,14 @@ export class PartComponent extends AbstractPartComponent {
 
   onViewChange(view: 'grid' | 'card') {
     this.selectedView = view;
+  }
+
+  onFiltersChanged(updatedFilters: any) {
+    this.service.filters = updatedFilters;
+  }
+  
+  clearFilters() {
+    this.service.filters = { maxResultCount: 100 };
+    this.list.get();
   }
 }
