@@ -1,3 +1,4 @@
+using AbpPoc.Documents;
 using AbpPoc.PartTests;
 using AbpPoc.Parts;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +36,7 @@ public class AbpPocDbContext :
     ISaasDbContext,
     IIdentityProDbContext
 {
+    public DbSet<Document> Documents { get; set; } = null!;
     public DbSet<PartTest> PartTests { get; set; } = null!;
     public DbSet<Part> Parts { get; set; } = null!;
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
@@ -158,6 +160,18 @@ public class AbpPocDbContext :
                 b.Property(x => x.uniqueId).HasColumnName(nameof(PartTest.uniqueId));
                 b.Property(x => x.nsn).HasColumnName(nameof(PartTest.nsn));
                 b.Property(x => x.imageUrl).HasColumnName(nameof(PartTest.imageUrl));
+            });
+
+        }
+        if (builder.IsHostDatabase())
+        {
+            builder.Entity<Document>(b =>
+            {
+                b.ToTable(AbpPocConsts.DbTablePrefix + "Documents", AbpPocConsts.DbSchema);
+                b.ConfigureByConvention();
+                b.Property(x => x.name).HasColumnName(nameof(Document.name)).IsRequired();
+                b.Property(x => x.size).HasColumnName(nameof(Document.size));
+                b.Property(x => x.type).HasColumnName(nameof(Document.type));
             });
 
         }

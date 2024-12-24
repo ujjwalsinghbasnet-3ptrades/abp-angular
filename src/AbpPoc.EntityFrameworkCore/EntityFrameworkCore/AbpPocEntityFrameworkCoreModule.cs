@@ -1,3 +1,4 @@
+using AbpPoc.Documents;
 using AbpPoc.PartTests;
 using AbpPoc.Parts;
 using System;
@@ -63,6 +64,8 @@ public class AbpPocEntityFrameworkCoreModule : AbpModule
             options.AddRepository<Part, Parts.EfCorePartRepository>();
 
             options.AddRepository<PartTest, PartTests.EfCorePartTestRepository>();
+
+            options.AddRepository<Document, Documents.EfCoreDocumentRepository>();
 
         });
 

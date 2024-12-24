@@ -1,3 +1,4 @@
+using AbpPoc.Documents;
 using AbpPoc.PartTests;
 using System;
 using AbpPoc.Shared;
@@ -23,5 +24,8 @@ public class AbpPocApplicationAutoMapperProfile : Profile
 
         CreateMap<PartTest, PartTestDto>();
         CreateMap<PartTest, PartTestExcelDto>();
+
+        CreateMap<Document, DocumentDto>();
+        CreateMap<Document, DocumentExcelDto>();
     }
 }

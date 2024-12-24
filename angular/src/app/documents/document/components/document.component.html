@@ -1,0 +1,190 @@
+<app-filtered-view [title]="'::Documents' | abpLocalization" [count]="service.data.totalCount">
+  <abp-page-toolbar-container class="col" header>
+    <div class="text-lg-end pt-2 d-flex justify-content-end gap-2">
+      <button
+        class="btn btn-primary btn-sm mx-2"
+        type="button"
+        [disabled]="service.isExportToExcelBusy"
+        (click)="exportToExcel()"
+      >
+        {{ '::ExportToExcel' | abpLocalization }}
+      </button>
+
+      <button
+        *abpPermission="'AbpPoc.Documents.Create'"
+        class="btn btn-primary btn-sm"
+        type="button"
+        (click)="create()"
+      >
+        <i class="fa fa-plus me-1" aria-hidden="true"></i>
+        {{ '::NewDocument' | abpLocalization }}
+      </button>
+
+      <div class="btn-group ml-2">
+        <button class="btn btn-primary btn-sm h-full" type="button" (click)="onViewChange('grid')">
+          <i class="fa fa-table" aria-hidden="true"></i>
+        </button>
+        <button
+          class="btn btn-primary btn-sm py-0 px-2"
+          type="button"
+          (click)="onViewChange('card')"
+        >
+          <i class="fa fa-th" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </abp-page-toolbar-container>
+
+  <app-advanced-filters
+    sidebar
+    [list]="list"
+    [filters]="service.filters"
+    [filterConfig]="[
+      { label: '::name', key: 'name' },
+      { label: '::Maxsize', key: 'maxsize' },
+      { label: '::Minsize', key: 'minsize' },
+      { label: '::type', key: 'type' }
+    ]"
+    (filtersChanged)="onFiltersChanged($event)"
+    (refresh)="list.get()"
+    (clear)="clearFilters()"
+  />
+  <div main-content class="d-flex flex-row gap-2 min-vh-100">
+    <ng-container *ngIf="selectedView === 'grid'">
+      <div class="card" style="width: 100%">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          @if (service.selectedCount() > 0) {
+          <h4 class="card-title">
+            {{
+              '::AllItemsAreSelected'
+                | abpLocalization
+                  : (service.allSelected() ? service.data.totalCount : service.selectedCount())
+            }}
+          </h4>
+
+          <div>
+            <button class="btn btn-outline-primary btn-sm" (click)="service.selectAll()">
+              @if (service.allSelected()) {
+              {{ '::ClearSelection' | abpLocalization }}
+              } @else {
+              {{ '::SelectAllItems' | abpLocalization : service.data.totalCount }}
+              }
+            </button>
+
+            <button class="btn btn-danger btn-sm mx-1" (click)="service.bulkDelete()">
+              <i class="fa fa-trash me-1" aria-hidden="true"></i>
+              {{ 'AbpUi::Delete' | abpLocalization : service.selectedCount() }}
+            </button>
+          </div>
+          }
+        </div>
+        <div class="card-body">
+          <ngx-datatable
+            default
+            [rows]="service.data.items"
+            [count]="service.data.totalCount"
+            [list]="list"
+            [selected]="service.selected()"
+            [selectionType]="service.selectionType.checkbox"
+            (select)="service.onSelect($event)"
+          >
+            <ngx-datatable-column
+              [width]="40"
+              [sortable]="false"
+              [canAutoResize]="false"
+              [draggable]="false"
+              [resizeable]="false"
+            >
+              <ng-template
+                ngx-datatable-header-template
+                let-value="value"
+                let-allRowsSelected="allRowsSelected"
+                let-selectFn="selectFn"
+              >
+                @if (service.data.items.length > 0) {
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  [checked]="allRowsSelected"
+                  (change)="selectFn(!allRowsSelected)"
+                />
+                }
+              </ng-template>
+              <ng-template
+                ngx-datatable-cell-template
+                let-value="value"
+                let-isSelected="isSelected"
+                let-onCheckboxChangeFn="onCheckboxChangeFn"
+              >
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  [checked]="isSelected"
+                  (change)="onCheckboxChangeFn($event)"
+                />
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column
+              [name]="'AbpUi::Actions' | abpLocalization"
+              [maxWidth]="150"
+              [width]="150"
+              [sortable]="false"
+            >
+              <ng-template let-row="row" let-i="rowIndex" ngx-datatable-cell-template>
+                <div ngbDropdown container="body" class="d-inline-block">
+                  <button
+                    class="btn btn-primary btn-sm dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    ngbDropdownToggle
+                  >
+                    <i class="fa fa-cog me-1" aria-hidden="true"></i>
+                    {{ 'AbpUi::Actions' | abpLocalization }}
+                  </button>
+
+                  <div ngbDropdownMenu>
+                    <button
+                      ngbDropdownItem
+                      *abpPermission="'AbpPoc.Documents.Edit'"
+                      (click)="update(row)"
+                    >
+                      {{ 'AbpUi::Edit' | abpLocalization }}
+                    </button>
+
+                    <button
+                      ngbDropdownItem
+                      *abpPermission="'AbpPoc.Documents.Delete'"
+                      (click)="delete(row)"
+                    >
+                      {{ 'AbpUi::Delete' | abpLocalization }}
+                    </button>
+                  </div>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="{{ '::name' | abpLocalization }}" prop="name">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.name }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="{{ '::size' | abpLocalization }}" prop="size">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.size }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="{{ '::type' | abpLocalization }}" prop="type">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.type }}
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</app-filtered-view>
+
+@defer (when serviceDetail.isVisible) { @if (serviceDetail.isVisible) {
+<app-document-detail-modal />
+} }

@@ -137,6 +137,17 @@
     "PartTests": "Part Tests",
     "NewPartTest": "New Part Test",
     "PartTest": "Part Test",
-    "Menu:PartTests": "Part Tests"
+    "Menu:PartTests": "Part Tests",
+    "Permission:Documents": "Documents",
+    "Documents": "Documents",
+    "NewDocument": "New Document",
+    "Document": "Document",
+    "Menu:Documents": "Documents",
+    "size": "size",
+    "type": "type",
+    "Minsize": "Min size",
+    "Mintype": "Min type",
+    "Maxsize": "Max size",
+    "Maxtype": "Max type"
   }
 }
