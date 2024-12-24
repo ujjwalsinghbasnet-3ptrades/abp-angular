@@ -1,4 +1,4 @@
-<app-filtered-view [title]="'::Parts' | abpLocalization">
+<app-filtered-view [title]="'::Parts' | abpLocalization" [count]="service.data.totalCount">
   <app-advanced-filters
     sidebar
     [list]="list"
@@ -18,6 +18,9 @@
       { label: '::uniqueId', key: 'uniqueId' },
       { label: '::nsn', key: 'nsn' }
     ]"
+    (filtersChanged)="onFiltersChanged($event)"
+    (refresh)="list.get()"
+    (clear)="clearFilters()"
   />
   <abp-page-toolbar-container class="col" header>
     <div class="text-lg-end pt-2 d-flex justify-content-end gap-2">
@@ -254,5 +257,5 @@
 </app-filtered-view>
 
 @defer (when serviceDetail.isVisible) { @if (serviceDetail.isVisible) {
-<app-part-detail-modal />
+<app-part-detail-modal class="col-6" />
 } }

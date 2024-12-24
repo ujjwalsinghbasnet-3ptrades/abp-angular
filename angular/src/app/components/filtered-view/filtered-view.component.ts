@@ -10,4 +10,5 @@ import { Component, Input } from '@angular/core';
 })
 export class FilteredViewComponent {
   @Input() title: string = '';
+  @Input() count: number = 0;
 }
