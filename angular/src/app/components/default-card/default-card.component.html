@@ -1,4 +1,4 @@
-<abp-card [style.height]="'100%'" [cardStyle]="{maxWidth: '30rem', width: '100%'}">
+<abp-card [style.height]="'100%'" [cardStyle]="{ maxWidth: '30rem', width: '100%' }" (click)="handleCardClick()">
   <abp-card-header class="k-display-flex k-align-items-center" *ngIf="title">
     <h5 class="abp-card-title k-text-capitalize k-text-truncate">{{ title }}</h5>
   </abp-card-header>
@@ -33,7 +33,9 @@
     <div *ngIf="renderCustomBody" [innerHTML]="renderCustomBody()"></div>
   </abp-card-body>
 
-  <abp-card-footer [cardFooterStyle]="{display: 'flex', 'justify-content': 'space-between', gap: '1rem'}">
+  <abp-card-footer
+    [cardFooterStyle]="{ display: 'flex', 'justify-content': 'space-between', gap: '1rem' }"
+  >
     <ng-container *ngFor="let action of cardActionProps">
       <button
         type="button"

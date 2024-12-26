@@ -2,6 +2,7 @@ import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { KENDO_CARD } from '@progress/kendo-angular-layout';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-default-card',
@@ -20,14 +21,15 @@ export class DefaultCardComponent {
   @Input() renderCustomBody?: () => string;
   @Input() cardActionProps: any;
   @Output() splitActions = new EventEmitter<any>();
+  @Input() routerLink!: any[];
+
+  constructor(private router: Router) {}
 
   camelCaseToTitleCase(str: string): string {
     return str.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, char => char.toUpperCase());
   }
 
   handleCardClick(): void {
-    if (this.splitActions) {
-      this.splitActions.emit(this.dataItem);
-    }
+    this.router.navigate(this.routerLink);
   }
 }

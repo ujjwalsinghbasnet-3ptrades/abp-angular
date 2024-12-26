@@ -1,0 +1,42 @@
+<abp-page title="Part Details">
+  <div class="container-fluid">
+    <div class="demo-card-container w-50 mx-auto">
+      <div class="card p-3">
+        <ng-container *ngIf="part()?.imageUrl; else noImageTemplate">
+          <img src="{{ part()?.imageUrl }}" class="card-img-top" />
+        </ng-container>
+        <ng-template #noImageTemplate>
+          <i class="icon-placeholder fa fa-cogs fa-10x mx-auto"></i>
+        </ng-template>
+        <div class="card-body">
+          <h1 class="card-title fs-1">{{ part()?.name }}</h1>
+          <ul class="list-group">
+            <li class="list-group-item">Part Number: {{ part()?.partNumber }}</li>
+            <li class="list-group-item">Description: {{ part()?.description }}</li>
+            <li class="list-group-item">To Number: {{ part()?.toNumber }}</li>
+            <li class="list-group-item">Cage Code: {{ part()?.cageCode }}</li>
+            <li class="list-group-item">
+              Distribution Statement: {{ part()?.distributionStatement }}
+            </li>
+            <li class="list-group-item">SMR: {{ part()?.smr }}</li>
+            <li class="list-group-item">NIIN: {{ part()?.niin }}</li>
+            <li class="list-group-item">FSC: {{ part()?.fsc }}</li>
+            <li class="list-group-item">WUC: {{ part()?.wuc }}</li>
+            <li class="list-group-item">UOC: {{ part()?.uoc }}</li>
+            <li class="list-group-item">Unique ID: {{ part()?.uniqueId }}</li>
+            <li class="list-group-item">NSN: {{ part()?.nsn }}</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <a href="javascript:void(0)" class="btn btn-primary" (click)="updatePart()"
+            >Update Part</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</abp-page>
+
+@defer (when partDetailService.isVisible) { @if (partDetailService.isVisible) {
+<app-part-detail-modal [submitForm]="submitDetailPageForm.bind(this)" />
+} }

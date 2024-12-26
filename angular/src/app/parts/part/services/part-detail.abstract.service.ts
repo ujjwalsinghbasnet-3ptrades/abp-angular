@@ -81,7 +81,6 @@ export abstract class AbstractPartDetailViewService {
   }
 
   update(record: PartDto) {
-    console.log('update', record);
     this.selected = record;
     this.showForm();
   }

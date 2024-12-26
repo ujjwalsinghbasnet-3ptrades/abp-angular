@@ -1,7 +1,7 @@
 import { CoreModule } from '@abp/ng.core';
 import { ThemeSharedModule, DateAdapter, TimeAdapter } from '@abp/ng.theme.shared';
 import { CommercialUiModule } from '@volo/abp.commercial.ng.ui';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   NgbNavModule,
@@ -33,5 +33,14 @@ import { PartDetailViewService } from '../services/part-detail.service';
   styles: [],
 })
 export class PartDetailModalComponent {
+  @Input() submitForm?: () => void;
   public readonly service = inject(PartDetailViewService);
+
+  handleFormSubmit() {
+    if (this.submitForm) {
+      this.submitForm();
+    } else {
+      this.service.submitForm()
+    }
+  }
 }
