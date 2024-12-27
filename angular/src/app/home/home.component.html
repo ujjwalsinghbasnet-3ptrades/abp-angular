@@ -2,54 +2,7 @@
   <div class="col-xl-6 col-12 d-flex">
     <div class="card h-lg-100 w-100 overflow-hidden">
       <div class="card-body">
-        <div class="starting-content pe-5">
-          @if(!hasLoggedIn){
-          <h3>Welcome</h3>
-          <p class="lead text-muted mb-2">
-            {{ '::LongWelcomeMessage' | abpLocalization }}
-          </p>
-          <a (click)="login()" class="px-4 btn btn-primary mb-4" role="button">
-            <i class="fa fa-sign-in"></i> 
-            {{ 'AbpAccount::Login' | abpLocalization }}
-          </a>
-          }
-
-          <h4>Getting Started</h4>
-          <p class="lead text-muted mb-2">
-            Learn how to create and run a new web application using the application startup
-            template.
-          </p>
-          <a
-            href="https://abp.io/docs/latest/getting-started"
-            class="btn btn-brand mb-4"
-            target="_blank"
-          >
-            Getting Started
-          </a>
-
-          <h4>Web Application Development Tutorial</h4>
-          <p class="lead text-muted mb-2">
-            Learn how to build an ABP based web application named Acme.BookStore.
-          </p>
-          <a
-            href="https://abp.io/docs/latest/tutorials/book-store/part-01?UI=NG&DB=EF"
-            class="btn btn-brand mb-4"
-            target="_blank"
-          >
-            Explore Tutorial
-          </a>
-
-          <h4>Customize Lepton Theme</h4>
-          <p class="text-muted mb-2">Learn how to customize LeptonX Theme as you wish.</p>
-          <a
-            href="https://abp.io/docs/commercial/latest/themes/lepton-x/index"
-            class="btn btn-primary soft mb-5 mb-xl-0"
-            target="_blank"
-          >
-            Customize Lepton
-          </a>
-        </div>
-        <img class="card-bg-image" src="assets/images/getting-started/bg-01.png" />
+        <app-widget-form></app-widget-form>
       </div>
     </div>
   </div>

@@ -1,0 +1,98 @@
+<h1>Widget Form</h1>
+
+<form [formGroup]="widgetForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="widgetName" class="form-label">Widget Name:</label>
+    <input
+      id="widgetName"
+      type="text"
+      class="form-control"
+      formControlName="widgetName"
+    />
+    <div
+      *ngIf="
+        widgetForm.get('widgetName')?.invalid &&
+        widgetForm.get('widgetName')?.touched
+      "
+    >
+      <small class="text-danger">Widget Name is required</small>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="widgetCols" class="form-label">Columns:</label>
+    <input
+      id="widgetCols"
+      type="number"
+      class="form-control"
+      formControlName="widgetCols"
+    />
+    <div
+      *ngIf="
+        widgetForm.get('widgetCols')?.invalid &&
+        widgetForm.get('widgetCols')?.touched
+      "
+    >
+      <small class="text-danger">Columns must be at least 1</small>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="widgetRows" class="form-label">Rows:</label>
+    <input
+      id="widgetRows"
+      type="number"
+      class="form-control"
+      formControlName="widgetRows"
+    />
+    <div
+      *ngIf="
+        widgetForm.get('widgetRows')?.invalid &&
+        widgetForm.get('widgetRows')?.touched
+      "
+    >
+      <small class="text-danger">Rows must be at least 1</small>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="widgetDescription" class="form-label">Description:</label>
+    <textarea
+      id="widgetDescription"
+      class="form-control"
+      formControlName="widgetDescription"
+    ></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="widgetType" class="form-label">Type:</label>
+    <select id="widgetType" class="form-select" formControlName="widgetType">
+      <option value="">Select Type</option>
+      <option value="External">External</option>
+      <option value="Internal">Internal</option>
+      <option value="Favorites">Favorites</option>
+    </select>
+  </div>
+  <div *ngIf="widgetForm.get('widgetType')?.value === 'External'" class="mb-3">
+    <label for="widgetUrl" class="form-label">URL:</label>
+    <input
+      id="widgetUrl"
+      type="text"
+      class="form-control"
+      formControlName="widgetUrl"
+    />
+    <div
+      *ngIf="
+        widgetForm.get('widgetUrl')?.invalid &&
+        widgetForm.get('widgetUrl')?.touched
+      "
+    >
+      <small class="text-danger">URL is required and must be valid</small>
+    </div>
+  </div>
+  <div class="mb-3">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!widgetForm.valid"
+    >
+      Submit
+    </button>
+  </div>
+</form>

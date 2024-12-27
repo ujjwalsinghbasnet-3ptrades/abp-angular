@@ -26,6 +26,7 @@ import { PartCardViewComponent } from 'src/app/components/part-card-view/part-ca
 import { PartGridViewComponent } from 'src/app/components/part-grid-view/part-grid-view.component';
 import { AdvancedFiltersComponent } from 'src/app/common/advanced-filters/advanced-filters.component';
 import { FilteredViewComponent } from 'src/app/components/filtered-view/filtered-view.component';
+import { PartDto } from '@proxy/parts';
 
 @Component({
   selector: 'app-part',
@@ -82,5 +83,11 @@ export class PartComponent extends AbstractPartComponent {
   clearFilters() {
     this.service.filters = { maxResultCount: 100 };
     this.list.get();
+  }
+
+  deletePart(record: PartDto) {
+    this.service.delete(record).subscribe(() => {
+      console.log('Part deleted and list refreshed');
+    });
   }
 }

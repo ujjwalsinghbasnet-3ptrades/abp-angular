@@ -2,7 +2,7 @@ import { inject, computed, signal } from '@angular/core';
 import { SelectionType } from '@swimlane/ngx-datatable';
 import { ConfirmationService, Confirmation } from '@abp/ng.theme.shared';
 import { ABP, AbpWindowService, ListService, PagedResultDto } from '@abp/ng.core';
-import { filter, switchMap, finalize } from 'rxjs/operators';
+import { filter, switchMap, finalize, tap } from 'rxjs/operators';
 import type { GetPartsInput, PartDto } from '../../../proxy/parts/models';
 import { PartService } from '../../../proxy/parts/part.service';
 
@@ -45,13 +45,15 @@ export abstract class AbstractPartViewService {
   }
 
   delete(record: PartDto) {
-    this.confirmationService
+    return this.confirmationService
       .warn('::DeleteConfirmationMessage', '::AreYouSure', { messageLocalizationParams: [] })
       .pipe(
         filter(status => status === Confirmation.Status.confirm),
         switchMap(() => this.proxyService.delete(record.id)),
-      )
-      .subscribe(this.list.get);
+        tap(() => {
+          this.list.get();
+        })
+      );
   }
 
   bulkDelete() {
@@ -75,7 +77,7 @@ export abstract class AbstractPartViewService {
       })
       .pipe(
         filter(result => result === Confirmation.Status.confirm),
-        switchMap(() => this.bulkDeleteRequest()),
+        switchMap(() => this.bulkDeleteRequest())
       )
       .subscribe();
   }
@@ -143,9 +145,9 @@ export abstract class AbstractPartViewService {
             downloadToken: token,
             filterText: this.list.filter,
             ...this.filters,
-          }),
+          })
         ),
-        finalize(() => (this.isExportToExcelBusy = false)),
+        finalize(() => (this.isExportToExcelBusy = false))
       )
       .subscribe(result => {
         this.abpWindowService.downloadBlob(result, 'Part.xlsx');
