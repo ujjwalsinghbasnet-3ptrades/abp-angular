@@ -5,13 +5,14 @@ import { Component, OnInit, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PartDto } from '@proxy/parts';
+import { PermissionDirective } from 'src/app/directives/cardActionDirectives';
 import { PartDetailViewService } from 'src/app/parts/part/services/part-detail.service';
 import { PartViewService } from 'src/app/parts/part/services/part.service';
 
 @Component({
   selector: 'app-part-details-page',
   standalone: true,
-  imports: [PageModule, CommonModule, ReactiveFormsModule],
+  imports: [PageModule, CommonModule, ReactiveFormsModule, PermissionDirective],
   templateUrl: './part-details-page.component.html',
   styleUrls: ['./part-details-page.component.scss'],
   providers: [ListService, PartDetailViewService, PartViewService],
@@ -82,8 +83,7 @@ export class PartDetailsPageComponent implements OnInit {
   }
 
   cancelEditing() {
-    this.isEditing.set(false);
-    this.partDetailService.form.disable();
+    this.refreshPartDetails();
   }
 
   private refreshPartDetails() {
@@ -91,7 +91,8 @@ export class PartDetailsPageComponent implements OnInit {
       this.part.set(part);
       this.partDetailService.selected = part;
       this.partDetailService.buildForm();
-      this.cancelEditing();
+      this.isEditing.set(false)
+      this.partDetailService.form.disable();
     });
   }
 

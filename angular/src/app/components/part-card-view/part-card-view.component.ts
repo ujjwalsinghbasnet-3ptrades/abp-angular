@@ -1,14 +1,5 @@
 import { PageModule } from '@abp/ng.components/page';
-import {
-  Component,
-  computed,
-  inject,
-  Input,
-  OnChanges,
-  OnInit,
-  Signal,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { KENDO_CARD } from '@progress/kendo-angular-layout';
 import { CommonModule } from '@angular/common';
 import { PartDto } from '@proxy/parts';
@@ -16,7 +7,6 @@ import { DefaultCardComponent } from '../default-card/default-card.component';
 import { PartDetailModalComponent } from 'src/app/parts/part/components/part-detail.component';
 import { PartDetailViewService } from 'src/app/parts/part/services/part-detail.service';
 import { PartViewService } from 'src/app/parts/part/services/part.service';
-import { PermissionService } from '@abp/ng.core';
 
 @Component({
   selector: 'app-part-card-view',
@@ -31,12 +21,10 @@ export class PartCardViewComponent implements OnChanges {
 
   constructor(
     public partDetailService: PartDetailViewService,
-    public partService: PartViewService,
-    private permissionService: PermissionService
+    public partService: PartViewService
   ) {
     this.partDetailService = partDetailService;
     this.partService = partService;
-    this.permissionService = permissionService;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -59,14 +47,14 @@ export class PartCardViewComponent implements OnChanges {
         dataItem: part,
         cardActionProps: [
           {
-            show: this.permissionService.getGrantedPolicy('AbpPoc.Parts.Edit'),
+            policy: 'AbpPoc.Parts.Edit',
             label: 'Edit',
             onClick: (part: PartDto) => {
               this.partDetailService.update(part);
             },
           },
           {
-            show: this.permissionService.getGrantedPolicy('AbpPoc.Parts.Delete'),
+            policy: 'AbpPoc.Parts.Delete',
             label: 'Delete',
             onClick: (part: PartDto) => {
               this.partService.delete(part);

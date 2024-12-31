@@ -43,41 +43,41 @@
           </form>
         </div>
         <div class="card-footer" style="position: fixed; top: 3rem; right: 3rem">
-          <!-- <a
-            *ngIf="!isEditing()"
-            href="javascript:void(0)"
-            class="btn btn-primary"
-            (click)="updatePart()"
-            >Update Part</a
-          > -->
-          <a
-            *ngIf="!isEditing()"
-            href="javascript:void(0)"
-            class="btn btn-primary"
-            (click)="toggleEditing()"
-            >Edit Part</a
-          >
-          <a
-            *ngIf="isEditing()"
-            href="javascript:void(0)"
-            class="btn btn-primary"
-            (click)="updateChanges()"
-            >Save</a
-          >
-          <a
-            *ngIf="isEditing()"
-            href="javascript:void(0)"
-            class="btn btn-danger mx-2"
-            (click)="cancelEditing()"
-            >Cancel</a
-          >
-          <a
-            *ngIf="!isEditing()"
-            href="javascript:void(0)"
-            class="btn btn-danger mx-2"
-            (click)="deletePart()"
-            >Delete Part</a
-          >
+          <div class="d-flex mx-2">
+            <div class="d-flex gap-2" *appPermission="'AbpPoc.Parts.Edit'">
+              <a
+                *ngIf="!isEditing()"
+                href="javascript:void(0)"
+                class="btn btn-primary"
+                (click)="toggleEditing()"
+              >
+                Edit Part
+              </a>
+              <a
+                *ngIf="isEditing()"
+                href="javascript:void(0)"
+                class="btn btn-primary"
+                (click)="updateChanges()"
+                >Save
+              </a>
+              <a
+                href="javascript:void(0)"
+                class="btn btn-danger mx-2"
+                (click)="cancelEditing()"
+                *ngIf="isEditing()"
+                >Cancel</a
+              >
+            </div>
+            <div *appPermission="'AbpPoc.Parts.Delete'" class="d-flex gap-2">
+              <a
+                href="javascript:void(0)"
+                class="btn btn-danger mx-2"
+                (click)="deletePart()"
+                *ngIf="!isEditing()"
+                >Delete Part</a
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>

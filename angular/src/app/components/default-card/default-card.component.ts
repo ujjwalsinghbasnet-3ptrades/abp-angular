@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { KENDO_CARD } from '@progress/kendo-angular-layout';
 import { Router } from '@angular/router';
+import { PermissionDirective } from 'src/app/directives/cardActionDirectives';
 
 @Component({
   selector: 'app-default-card',
   standalone: true,
-  imports: [KENDO_CARD, CommonModule,ThemeSharedModule],
+  imports: [KENDO_CARD, CommonModule,ThemeSharedModule, PermissionDirective],
   templateUrl: './default-card.component.html',
   styleUrl: './default-card.component.scss',
 })
@@ -23,7 +24,8 @@ export class DefaultCardComponent {
   @Output() splitActions = new EventEmitter<any>();
   @Input() routerLink!: any[];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
 
   camelCaseToTitleCase(str: string): string {
     return str.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, char => char.toUpperCase());
