@@ -2,7 +2,7 @@ import { PageModule } from '@abp/ng.components/page';
 import { ListService } from '@abp/ng.core';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PartDto } from '@proxy/parts';
 import { PermissionDirective } from 'src/app/directives/cardActionDirectives';
@@ -12,7 +12,7 @@ import { PartViewService } from 'src/app/parts/part/services/part.service';
 @Component({
   selector: 'app-part-details-page',
   standalone: true,
-  imports: [PageModule, CommonModule, ReactiveFormsModule, PermissionDirective],
+  imports: [PageModule, CommonModule, ReactiveFormsModule, PermissionDirective, FormsModule],
   templateUrl: './part-details-page.component.html',
   styleUrls: ['./part-details-page.component.scss'],
   providers: [ListService, PartDetailViewService, PartViewService],
@@ -21,14 +21,6 @@ export class PartDetailsPageComponent implements OnInit {
   partId: string = '';
   part = signal<PartDto | null>(null);
   isEditing = signal<boolean>(false);
-
-  breadcrumb = {
-    items: [
-      { breadcrumbText: 'Home', path: '/' },
-      { breadcrumbText: 'Parts', path: '/parts' },
-      { breadcrumbText: 'Part Details', path: '/' },
-    ],
-  };
 
   constructor(
     private route: ActivatedRoute,
@@ -97,7 +89,7 @@ export class PartDetailsPageComponent implements OnInit {
   }
 
   getFormControls(): string[] {
-    return Object.keys(this.partDetailService.form.controls);
+    return Object.keys(this.partDetailService.form?.controls || {});
   }
 
   getFieldType(controlName: string): string {
