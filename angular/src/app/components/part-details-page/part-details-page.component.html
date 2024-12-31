@@ -9,7 +9,7 @@
           <i class="icon-placeholder fa fa-cogs fa-10x mx-auto"></i>
         </ng-template>
         <div class="card-body">
-          <form [formGroup]="partDetailService.form" (ngSubmit)="updateChanges()">
+          <form [formGroup]="partDetailService.form" (ngSubmit)="updateChanges()" *ngIf="partDetailService.form">
             <div *ngFor="let controlName of getFormControls()">
               <div class="mb-3">
                 <label [for]="controlName" class="form-label"
