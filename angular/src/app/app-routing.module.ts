@@ -78,7 +78,7 @@ const routes: Routes = [
   {
     path: 'parts/:id',
     loadChildren: () =>
-      import('./components/part-details-page/part-details.module').then(m => m.PartDetailsModule),
+      import('./components/part-details/part-details-page/part-details.module').then(m => m.PartDetailsModule),
   },
   {
     path: 'documents',

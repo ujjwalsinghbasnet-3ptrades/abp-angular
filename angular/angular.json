@@ -24,7 +24,7 @@
             "outputPath": "dist/AbpPoc",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["src/polyfills.ts", "@angular/localize/init"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "allowedCommonJsDependencies": [
@@ -129,7 +129,8 @@
                 "input": "node_modules/@volosoft/ngx-lepton-x/assets/css/side-menu/layout-bundle.css",
                 "inject": false,
                 "bundleName": "layout-bundle"
-              },              {
+              },
+              {
                 "input": "node_modules/@volosoft/ngx-lepton-x/assets/css/dark.rtl.css",
                 "inject": false,
                 "bundleName": "dark.rtl"
@@ -177,7 +178,9 @@
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {
@@ -234,7 +237,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["src/polyfills.ts", "@angular/localize/init"],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",

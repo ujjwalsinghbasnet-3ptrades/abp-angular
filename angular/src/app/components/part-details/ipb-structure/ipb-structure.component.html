@@ -1,0 +1,52 @@
+<div class="container-fluid min-vh-100 mt-5">
+  <app-tree-view
+    [data]="parts"
+    [columns]="columns"
+    class="d-block min-vh-100"
+    (add)="addHandler($event)"
+  />
+
+  <abp-modal [(visible)]="isVisible">
+    <ng-template #abpHeader>
+      <h3>
+       Add IPB
+      </h3>
+    </ng-template>
+  
+    <ng-template #abpBody>
+      <form id="part"  validateOnSubmit>
+        <ul ngbNav #nav="ngbNav" class="nav-tabs">
+          <li ngbNavItem>
+            <ng-template ngbNavContent>
+              <div class="mt-2 fade-in-top">
+                <div class="mb-3">
+                  <label class="form-label" for="part-name">
+                    Part Name
+                  </label>
+  
+                  <input
+                    id="part-name"
+                    class="form-control"
+                    minlength="3"
+                    autofocus
+                  />
+                </div>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav"></div>
+      </form>
+    </ng-template>
+  
+    <ng-template #abpFooter>
+      <button type="button" class="btn btn-secondary" abpClose>
+        Cancel
+      </button>
+      <abp-button iconClass="fa fa-check" buttonType="submit" formName="part">
+        Save
+      </abp-button>
+    </ng-template>
+  </abp-modal>
+</div>
+

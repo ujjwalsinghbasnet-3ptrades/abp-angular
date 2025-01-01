@@ -1,0 +1,60 @@
+<kendo-treelist
+  [kendoTreeListFlatBinding]="data"
+  idField="id"
+  parentIdField="parentId"
+  [style.height.%]="100"
+  kendoTreeListExpandable
+  [initiallyExpanded]="true"
+  kendoTreeListSelectable
+  [selectable]="settings"
+  [(selectedItems)]="selected"
+  [columnMenu]="true"
+  [sortable]="true"
+  [resizable]="true"
+  [reorderable]="true"
+  [navigable]="true"
+  [pageable]="true"
+  [pageSize]="15"
+  filterable="menu"
+  (add)="addHandler($event)"
+>
+  <ng-template kendoTreeListToolbarTemplate>
+    <button kendoTreeListAddCommand type="button" (click)="addHandler()">Add new</button>
+    <kendo-textbox
+      [style.width.px]="185"
+      placeholder="Search in all columns..."
+      (valueChange)="onFilter($event)"
+    ></kendo-textbox>
+    <kendo-treelist-spacer></kendo-treelist-spacer>
+    <button kendoTreeListPDFCommand [svgIcon]="filePdfIcon">Export to PDF</button>
+    <button kendoTreeListExcelCommand [svgIcon]="fileExcelIcon">Export to Excel</button>
+  </ng-template>
+  <kendo-treelist-checkbox-column
+    [width]="40"
+    [columnMenu]="false"
+    [checkChildren]="true"
+    [showSelectAll]="true"
+  >
+  </kendo-treelist-checkbox-column>
+  <kendo-treelist-column [expandable]="true" field="name" title="Name" [width]="350">
+    <ng-template kendoTreeListCellTemplate let-dataItem>
+      <div class="customer-name">{{ dataItem.name }}</div>
+    </ng-template>
+  </kendo-treelist-column>
+  
+  <kendo-treelist-column 
+  *ngFor="let col of columns" 
+  [field]="col.field" 
+  [title]="col.name" 
+  [width]="250">
+  </kendo-treelist-column>
+
+  <kendo-treelist-pdf
+    fileName="Parts.pdf"
+    [allPages]="true"
+    paperSize="A4"
+    [repeatHeaders]="true"
+  >
+  </kendo-treelist-pdf>
+  <kendo-treelist-excel fileName="Parts.xlsx"></kendo-treelist-excel>
+</kendo-treelist>

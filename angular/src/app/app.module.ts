@@ -43,6 +43,12 @@ import { AppComponent } from './app.component';
 import { APP_ROUTE_PROVIDER } from './route.provider';
 import { PARTS_PART_ROUTE_PROVIDER } from './parts/part/providers/part-route.provider';
 import { DOCUMENTS_DOCUMENT_ROUTE_PROVIDER } from './documents/document/providers/document-route.provider';
+import { ExcelModule, PDFModule, TreeListModule } from '@progress/kendo-angular-treelist';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { InputsModule } from "@progress/kendo-angular-inputs";
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -56,9 +62,15 @@ import { DOCUMENTS_DOCUMENT_ROUTE_PROVIDER } from './documents/document/provider
     IdentityConfigModule,
     GdprConfigModule,
     AuditLoggingConfigModule,
+    TreeListModule,
+    ButtonsModule,
+    ExcelModule,
+    PDFModule,
+    InputsModule,
     ThemeLeptonXModule.forRoot(),
     SideMenuLayoutModule.forRoot(),
     AccountLayoutModule.forRoot(),
+    DropDownsModule,
   ],
   providers: [
     APP_ROUTE_PROVIDER,

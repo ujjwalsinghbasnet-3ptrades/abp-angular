@@ -1,23 +1,21 @@
-import { PageModule } from '@abp/ng.components/page';
-import { ListService } from '@abp/ng.core';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { PartDto } from '@proxy/parts';
 import { PermissionDirective } from 'src/app/directives/cardActionDirectives';
 import { PartDetailViewService } from 'src/app/parts/part/services/part-detail.service';
 import { PartViewService } from 'src/app/parts/part/services/part.service';
 
 @Component({
-  selector: 'app-part-details-page',
+  selector: 'app-overview',
   standalone: true,
-  imports: [PageModule, CommonModule, ReactiveFormsModule, PermissionDirective, FormsModule],
-  templateUrl: './part-details-page.component.html',
-  styleUrls: ['./part-details-page.component.scss'],
-  providers: [ListService, PartDetailViewService, PartViewService],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, PermissionDirective],
+  templateUrl: './overview.component.html',
+  styleUrl: './overview.component.scss',
 })
-export class PartDetailsPageComponent implements OnInit {
+export class OverviewComponent implements OnInit {
   partId: string = '';
   part = signal<PartDto | null>(null);
   isEditing = signal<boolean>(false);
@@ -83,7 +81,7 @@ export class PartDetailsPageComponent implements OnInit {
       this.part.set(part);
       this.partDetailService.selected = part;
       this.partDetailService.buildForm();
-      this.isEditing.set(false)
+      this.isEditing.set(false);
       this.partDetailService.form.disable();
     });
   }

@@ -1,0 +1,12 @@
+<abp-page>
+  <div class="container-fluid">
+    <abp-page-toolbar-container>
+        <button class="btn" [ngClass]="{'btn-primary': selectedTab() === 'overview'}" (click)="handleTabChange('overview')">Overview</button>
+        <button class="btn mx-2" [ngClass]="{'btn-primary': selectedTab() === 'ipbStructure'}" (click)="handleTabChange('ipbStructure')">IPB Structure</button>
+
+    </abp-page-toolbar-container>
+    <app-overview *ngIf="selectedTab() === 'overview'"></app-overview>
+    <app-ipb-structure *ngIf="selectedTab() === 'ipbStructure'"></app-ipb-structure>
+  </div>
+</abp-page>
+

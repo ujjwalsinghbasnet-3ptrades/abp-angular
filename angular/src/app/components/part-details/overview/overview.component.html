@@ -1,0 +1,87 @@
+<div class="container-fluid">
+  <div class="demo-card-container w-50 mx-auto">
+    <div class="card p-3">
+      <ng-container *ngIf="part()?.imageUrl; else noImageTemplate">
+        <img src="{{ part()?.imageUrl }}" class="card-img-top" />
+      </ng-container>
+      <ng-template #noImageTemplate>
+        <i class="icon-placeholder fa fa-cogs fa-10x mx-auto"></i>
+      </ng-template>
+      <div class="card-body">
+        <form
+          [formGroup]="partDetailService.form"
+          (ngSubmit)="updateChanges()"
+          *ngIf="partDetailService.form"
+        >
+          <div *ngFor="let controlName of getFormControls()">
+            <div class="mb-3">
+              <label [for]="controlName" class="form-label"
+                >{{ controlName?.toUpperCase() }}:</label
+              >
+              <input
+                [id]="controlName"
+                [formControlName]="controlName"
+                [type]="getFieldType(controlName)"
+                class="form-control"
+              />
+              <div
+                *ngIf="
+                  partDetailService.form.get(controlName).invalid &&
+                  partDetailService.form.get(controlName).touched
+                "
+              >
+                <span
+                  *ngIf="partDetailService.form.get(controlName).errors?.required"
+                  class="text-danger"
+                  >{{ controlName }} is required.</span
+                >
+                <span
+                  *ngIf="partDetailService.form.get(controlName).errors?.minlength"
+                  class="text-danger"
+                  >Minimum length required.</span
+                >
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer" style="position: fixed; top: 3rem; right: 3rem">
+        <div class="d-flex mx-2">
+          <div class="d-flex gap-2" *appPermission="'AbpPoc.Parts.Edit'">
+            <a
+              *ngIf="!isEditing()"
+              href="javascript:void(0)"
+              class="btn btn-primary"
+              (click)="toggleEditing()"
+            >
+              Edit Part
+            </a>
+            <a
+              *ngIf="isEditing()"
+              href="javascript:void(0)"
+              class="btn btn-primary"
+              (click)="updateChanges()"
+              >Save
+            </a>
+            <a
+              href="javascript:void(0)"
+              class="btn btn-danger mx-2"
+              (click)="cancelEditing()"
+              *ngIf="isEditing()"
+              >Cancel</a
+            >
+          </div>
+          <div *appPermission="'AbpPoc.Parts.Delete'" class="d-flex gap-2">
+            <a
+              href="javascript:void(0)"
+              class="btn btn-danger mx-2"
+              (click)="deletePart()"
+              *ngIf="!isEditing()"
+              >Delete Part</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
