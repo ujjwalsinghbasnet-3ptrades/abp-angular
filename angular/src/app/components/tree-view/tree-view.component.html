@@ -19,7 +19,7 @@
   (add)="addHandler($event)"
 >
   <ng-template kendoTreeListToolbarTemplate>
-    <button kendoTreeListAddCommand type="button" (click)="addHandler()">Add new</button>
+    <button kendoTreeListAddCommand type="button" (click)="addHandler()" class="btn k-button-outline-primary">{{addLabel}}</button>
     <kendo-textbox
       [style.width.px]="185"
       placeholder="Search in all columns..."

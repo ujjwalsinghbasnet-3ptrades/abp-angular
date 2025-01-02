@@ -21,8 +21,10 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 export class TreeViewComponent {
   @ViewChild(FlatBindingDirective) dataBinding: FlatBindingDirective;
   @Input() data: any[] = [];
+  @Input() addLabel?: string = 'Add New';
   @Input() columns: { name: string; field: string }[] = [];
   @Output() add: EventEmitter<any> = new EventEmitter<any>();
+
   public fileExcelIcon: SVGIcon = fileExcelIcon;
   public filePdfIcon: SVGIcon = filePdfIcon;
 
