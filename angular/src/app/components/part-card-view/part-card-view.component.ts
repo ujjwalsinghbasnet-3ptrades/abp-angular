@@ -32,7 +32,7 @@ export class PartCardViewComponent implements OnChanges {
       this.cardParts = this.parts.map(part => ({
         title: part.name,
         link: `/part/${part.id}`,
-        imageUrl: part.imageUrl,
+        imageUrl: "",
         iconClassName: 'fa fa-cogs fa-10x',
         cardBody: {
           partNumber: part.partNumber,

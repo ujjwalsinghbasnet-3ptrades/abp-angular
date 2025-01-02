@@ -71,5 +71,12 @@ namespace AbpPoc.Controllers.Ipbs
         {
             return _ipbsAppService.DeleteAsync(id);
         }
+
+        [HttpGet]
+        [Route("source-part/{sourcePartId}")]
+        public Task<PagedResultDto<IpbWithNavigationPropertiesDto>> GetIpbForSourcePart(string sourcePartId)
+        {
+            return _ipbsAppService.GetListAsync(new GetIpbsInput { sourceId = sourcePartId });
+        }
     }
 }
