@@ -1,3 +1,4 @@
+using AbpPoc.Ipbs;
 using AbpPoc.Documents;
 using AbpPoc.PartTests;
 using System;
@@ -27,5 +28,10 @@ public class AbpPocApplicationAutoMapperProfile : Profile
 
         CreateMap<Document, DocumentDto>();
         CreateMap<Document, DocumentExcelDto>();
+
+        CreateMap<Ipb, IpbDto>();
+        CreateMap<IpbWithNavigationProperties, IpbWithNavigationPropertiesDto>();
+        CreateMap<Part, LookupDto<Guid>>().ForMember(dest => dest.DisplayName, opt => opt.MapFrom(src => src.name));
+        CreateMap<Part, LookupDto<Guid>>().ForMember(dest => dest.DisplayName, opt => opt.MapFrom(src => src.name));
     }
 }

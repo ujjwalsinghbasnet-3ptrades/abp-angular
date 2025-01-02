@@ -35,6 +35,11 @@ public class AbpPocPermissionDefinitionProvider : PermissionDefinitionProvider
         documentPermission.AddChild(AbpPocPermissions.Documents.Create, L("Permission:Create"));
         documentPermission.AddChild(AbpPocPermissions.Documents.Edit, L("Permission:Edit"));
         documentPermission.AddChild(AbpPocPermissions.Documents.Delete, L("Permission:Delete"));
+
+        var ipbPermission = myGroup.AddPermission(AbpPocPermissions.Ipbs.Default, L("Permission:Ipbs"));
+        ipbPermission.AddChild(AbpPocPermissions.Ipbs.Create, L("Permission:Create"));
+        ipbPermission.AddChild(AbpPocPermissions.Ipbs.Edit, L("Permission:Edit"));
+        ipbPermission.AddChild(AbpPocPermissions.Ipbs.Delete, L("Permission:Delete"));
     }
 
     private static LocalizableString L(string name)

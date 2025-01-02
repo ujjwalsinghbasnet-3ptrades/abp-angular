@@ -45,4 +45,12 @@ public static class AbpPocPermissions
         public const string Create = Default + ".Create";
         public const string Delete = Default + ".Delete";
     }
+
+    public static class Ipbs
+    {
+        public const string Default = GroupName + ".Ipbs";
+        public const string Edit = Default + ".Edit";
+        public const string Create = Default + ".Create";
+        public const string Delete = Default + ".Delete";
+    }
 }

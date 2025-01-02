@@ -148,6 +148,9 @@
     "Minsize": "Min size",
     "Mintype": "Min type",
     "Maxsize": "Max size",
-    "Maxtype": "Max type"
+    "Maxtype": "Max type",
+    "sourcePart": "source part",
+    "relatedPart": "related part",
+    "Permission:Ipbs": "Ipbs"
   }
 }
