@@ -16,7 +16,7 @@
   <ng-template #abpBody>
     <!--<suite-custom-code-block-4>-->
     <!--</suite-custom-code-block-4>-->
-    <form [formGroup]="service.form" id="ipb" (ngSubmit)="service.submitForm()" validateOnSubmit>
+    <form [formGroup]="service.form" id="ipb" (ngSubmit)="submit()" validateOnSubmit>
       <!--<suite-custom-code-block-5>-->
       <!--</suite-custom-code-block-5>-->
 
@@ -82,7 +82,7 @@
 
               <div class="mb-3">
                 <label class="form-label" for="ipb-source-id">
-                  {{ '::Part' | abpLocalization }}
+                  {{ 'Source Part' | abpLocalization }}
                 </label>
                 <abp-lookup-select
                   cid="ipb-source-id"
@@ -92,7 +92,7 @@
               </div>
               <div class="mb-3">
                 <label class="form-label" for="ipb-related-id">
-                  {{ '::Part' | abpLocalization }}
+                  {{ 'Related Part' | abpLocalization }}
                 </label>
                 <abp-lookup-select
                   cid="ipb-related-id"

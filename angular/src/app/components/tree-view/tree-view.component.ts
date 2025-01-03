@@ -6,7 +6,7 @@ import {
   SelectableSettings,
   TreeListModule,
 } from '@progress/kendo-angular-treelist';
-import { fileExcelIcon, filePdfIcon, SVGIcon } from '@progress/kendo-svg-icons';
+import { fileExcelIcon, filePdfIcon, SVGIcon, pencilIcon, trashIcon, cancelIcon } from '@progress/kendo-svg-icons';
 import { CommonModule } from '@angular/common';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { InputsModule } from '@progress/kendo-angular-inputs';
@@ -24,9 +24,15 @@ export class TreeViewComponent {
   @Input() addLabel?: string = 'Add New';
   @Input() columns: { name: string; field: string }[] = [];
   @Output() add: EventEmitter<any> = new EventEmitter<any>();
-
+  @Output() edit: EventEmitter<any> = new EventEmitter<any>();
+  @Output() remove: EventEmitter<any> = new EventEmitter<any>();
+  
   public fileExcelIcon: SVGIcon = fileExcelIcon;
   public filePdfIcon: SVGIcon = filePdfIcon;
+  public pencilIcon: SVGIcon = pencilIcon;
+  public trashIcon: SVGIcon = trashIcon;
+  public cancelIcon: SVGIcon = cancelIcon;
+
 
   public selected: any[] = [];
 
@@ -61,5 +67,13 @@ export class TreeViewComponent {
   }
   addHandler(event: any) {
     this.add.emit(event);
+  } 
+
+  editHandler(event: any) {
+    this.edit.emit(event);
+  }
+
+  removeHandler(event: any) {
+    this.remove.emit(event);
   }
 }

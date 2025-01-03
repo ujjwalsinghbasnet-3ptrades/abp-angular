@@ -6,10 +6,13 @@ import { finalize, tap } from 'rxjs/operators';
 
 import type { PartDto } from '../../../proxy/parts/models';
 import { PartService } from '../../../proxy/parts/part.service';
+import { IpbService } from '@proxy/ipbs/ipb.service';
+import { firstValueFrom, from } from 'rxjs';
 
 export abstract class AbstractPartDetailViewService {
   protected readonly fb = inject(FormBuilder);
   protected readonly track = inject(TrackByService);
+  protected readonly ipbService = inject(IpbService);
 
   public readonly proxyService = inject(PartService);
   public readonly list = inject(ListService);
@@ -19,7 +22,7 @@ export abstract class AbstractPartDetailViewService {
   selected = {} as any;
   form: FormGroup | undefined;
 
-  protected createRequest() {
+  protected async createRequest() {
     const formValues = {
       ...this.form.value,
     };
@@ -30,8 +33,19 @@ export abstract class AbstractPartDetailViewService {
         concurrencyStamp: this.selected.concurrencyStamp,
       });
     }
-
-    return this.proxyService.create(formValues);
+    const createPartObservable = this.proxyService.create(formValues);
+    const createdPart = await firstValueFrom(createPartObservable);
+    if (createdPart) {
+      await firstValueFrom(
+        this.ipbService.create({
+          sourceId: null,
+          relatedId: createdPart?.id,
+          figureName: createdPart.name,
+          figureNumber: createdPart.partNumber,
+        })
+      );
+    }
+    return createdPart;
   }
 
   buildForm() {
@@ -94,9 +108,9 @@ export abstract class AbstractPartDetailViewService {
 
     this.isBusy = true;
 
-    const request = this.createRequest().pipe(
+    const request = from(this.createRequest()).pipe(
       finalize(() => (this.isBusy = false)),
-      tap(() => this.hideForm()),
+      tap(() => this.hideForm())
     );
 
     request.subscribe(this.list.get);

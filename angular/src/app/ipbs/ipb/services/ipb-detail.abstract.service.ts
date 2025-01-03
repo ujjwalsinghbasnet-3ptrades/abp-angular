@@ -16,7 +16,7 @@ export abstract class AbstractIpbDetailViewService {
 
   public readonly getPartLookup = this.proxyService.getPartLookup;
 
-
+  isCreating = false;
   isBusy = false;
   isVisible = false;
   selected = {} as any;
@@ -24,10 +24,10 @@ export abstract class AbstractIpbDetailViewService {
 
   protected createRequest() {
     const formValues = {
-      ...this.form.value,
+      ...this.form.getRawValue(),
     };
 
-    if (this.selected) {
+    if (this.selected && !this.isCreating) {
       return this.proxyService.update(this.selected.ipb.id, {
         ...formValues,
         concurrencyStamp: this.selected.ipb.concurrencyStamp,
@@ -40,14 +40,20 @@ export abstract class AbstractIpbDetailViewService {
   buildForm() {
     const { figureName, figureNumber, toNumber, indentureLevel, sourceId, relatedId } =
       this.selected?.ipb || {};
-
+    console.log(this.isCreating);
     this.form = this.fb.group({
       figureName: [figureName ?? null, [Validators.required, Validators.maxLength(256)]],
       figureNumber: [figureNumber ?? null, [Validators.required, Validators.maxLength(32)]],
       toNumber: [toNumber ?? null, [Validators.maxLength(512)]],
       indentureLevel: [indentureLevel ?? null, [Validators.maxLength(8)]],
-      sourceId: [sourceId ?? null, []],
-      relatedId: [relatedId ?? null, []],
+      sourceId: [{
+        value: sourceId ?? null,
+        disabled: sourceId !== undefined
+      }, []],
+      relatedId: [{
+        value: relatedId ?? null,
+        disabled: relatedId !== undefined
+      }],
     });
   }
 
@@ -56,12 +62,14 @@ export abstract class AbstractIpbDetailViewService {
     this.isVisible = true;
   }
 
-  create() {
-    this.selected = undefined;
+  create(body?: any) {
+    this.selected = body || undefined;
+    this.isCreating = true;
     this.showForm();
   }
 
   update(record: IpbWithNavigationPropertiesDto) {
+    this.isCreating = false;
     this.selected = record;
     this.showForm();
   }
@@ -78,9 +86,10 @@ export abstract class AbstractIpbDetailViewService {
     const request = this.createRequest().pipe(
       finalize(() => (this.isBusy = false)),
       tap(() => this.hideForm()),
+      tap(() => this.list.get())
     );
 
-    request.subscribe(this.list.get);
+    return request;
   }
 
   changeVisible($event: boolean) {

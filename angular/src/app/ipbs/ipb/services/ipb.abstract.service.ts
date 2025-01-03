@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { ConfirmationService, Confirmation } from '@abp/ng.theme.shared';
 import { ABP, ListService, PagedResultDto } from '@abp/ng.core';
-import { filter, switchMap } from 'rxjs/operators';
+import { filter, switchMap, tap } from 'rxjs/operators';
 import type { GetIpbsInput, IpbWithNavigationPropertiesDto } from '../../../proxy/ipbs/models';
 import { IpbService } from '../../../proxy/ipbs/ipb.service';
 
@@ -18,13 +18,13 @@ export abstract class AbstractIpbViewService {
   filters = {} as GetIpbsInput;
 
   delete(record: IpbWithNavigationPropertiesDto) {
-    this.confirmationService
+    return this.confirmationService
       .warn('::DeleteConfirmationMessage', '::AreYouSure', { messageLocalizationParams: [] })
       .pipe(
         filter(status => status === Confirmation.Status.confirm),
-        switchMap(() => this.proxyService.delete(record.ipb.id)),
+        switchMap(() => this.proxyService.delete(record.ipb.id))
       )
-      .subscribe(this.list.get);
+      .pipe(tap(() => this.list.get()));
   }
 
   hookToQuery() {

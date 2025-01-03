@@ -1,17 +1,28 @@
-import { IpbDto } from "@proxy/ipb";
+import { IpbDto } from "@proxy/ipbs/models";
+import { PartDto } from "@proxy/parts/models";
   
-export interface IbpTree extends IpbDto {
-    ipb: IpbDto;
-  }
+
+interface IbpTree {
+  ipb: IpbDto;
+  related: PartDto;
+  source: PartDto;
+}
   
-  export function getIpbParts(ipbs: IpbDto[]): IbpTree[] {
+
+  export function getIpbParts(ipbs: IbpTree[]): any[] {
     const result: any[] = [];
-  
     function traverse(ipb: IbpTree): void {
-      if (ipb.relatedPart) {
+      if (ipb.related && ipb.source) {
         const modifiedPart = {
-          ...ipb.ipb,
-          ...ipb.relatedPart
+          figureName:ipb.ipb.figureName,
+          figureNumber:ipb.ipb.figureNumber,
+          toNumber:ipb.ipb.toNumber,
+          indentureLevel:ipb.ipb.indentureLevel,
+          ...ipb.related,
+          id: ipb.ipb.id,
+          relatedId: ipb.related?.id,
+          sourceId: ipb.source?.id,
+          concurrencyStamp: ipb.ipb.concurrencyStamp,
         }
         result.push(modifiedPart);
       }
@@ -21,5 +32,5 @@ export interface IbpTree extends IpbDto {
       traverse(ipb as IbpTree);
     }
   
-    return [ipbs[0].sourcePart, ...result];
+    return result;
   }

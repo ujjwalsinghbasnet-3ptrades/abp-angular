@@ -1,9 +1,11 @@
 <div class="container-fluid min-vh-100 mt-5">
   <app-tree-view
-    [data]="parts"
+    [data]="ipbs()"
     [columns]="columns"
     class="d-block min-vh-100"
     (add)="addHandler($event)"
+    (edit)="editHandler($event)"
+    (remove)="removeHandler($event)"
     [addLabel]="'Create New IPB'"
   />
 
@@ -51,3 +53,9 @@
   </abp-modal>
 </div>
 
+
+@defer (when ipbDetailViewService.isVisible) {
+  @if (ipbDetailViewService.isVisible) {
+    <app-ipb-detail-modal [submitHandler]="submitHandler.bind(this)"/>
+  }
+}

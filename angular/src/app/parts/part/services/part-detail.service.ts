@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AbstractPartDetailViewService } from './part-detail.abstract.service';
 import { finalize, tap } from 'rxjs/operators';
+import { from } from 'rxjs';
 
 @Injectable()
 export class PartDetailViewService extends AbstractPartDetailViewService {
@@ -16,7 +17,7 @@ export class PartDetailViewService extends AbstractPartDetailViewService {
 
     this.isBusy = true;
 
-    const request = this.createRequest().pipe(
+    const request = from(this.createRequest()).pipe(
       finalize(() => (this.isBusy = false)),
       tap(() => this.hideForm())
     );

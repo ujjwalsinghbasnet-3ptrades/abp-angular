@@ -42,5 +42,6 @@ export interface IpbUpdateDto {
 
 export interface IpbWithNavigationPropertiesDto {
   ipb: IpbDto;
-  part: PartDto;
+  related: PartDto;
+  source: PartDto;
 }

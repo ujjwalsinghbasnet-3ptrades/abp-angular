@@ -1,7 +1,7 @@
 <kendo-treelist
   [kendoTreeListFlatBinding]="data"
-  idField="id"
-  parentIdField="sourcePart"
+  idField="relatedId"
+  parentIdField="sourceId"
   [style.height.%]="100"
   kendoTreeListExpandable
   [initiallyExpanded]="true"
@@ -17,9 +17,18 @@
   [pageSize]="15"
   filterable="menu"
   (add)="addHandler($event)"
+  (edit)="editHandler($event)"
+  (remove)="removeHandler($event)"
 >
   <ng-template kendoTreeListToolbarTemplate>
-    <button kendoTreeListAddCommand type="button" (click)="addHandler()" class="btn k-button-outline-primary">{{addLabel}}</button>
+    <button
+      kendoTreeListAddCommand
+      type="button"
+      (click)="addHandler()"
+      class="btn k-button-outline-primary"
+    >
+      {{ addLabel }}
+    </button>
     <kendo-textbox
       [style.width.px]="185"
       placeholder="Search in all columns..."
@@ -36,25 +45,35 @@
     [showSelectAll]="true"
   >
   </kendo-treelist-checkbox-column>
+  <kendo-treelist-command-column [width]="140" [columnMenu]="false">
+    <ng-template kendoTreeListCellTemplate let-isNew="isNew" let-cellContext="cellContext">
+      <button
+        [kendoTreeListEditCommand]="cellContext"
+        [svgIcon]="pencilIcon"
+        title="Edit"
+        [primary]="true"
+      ></button>
+      <button
+        [kendoTreeListRemoveCommand]="cellContext"
+        [svgIcon]="trashIcon"
+        title="Remove"
+      ></button>
+    </ng-template>
+  </kendo-treelist-command-column>
   <kendo-treelist-column [expandable]="true" field="name" title="Name" [width]="350">
     <ng-template kendoTreeListCellTemplate let-dataItem>
       <div class="customer-name">{{ dataItem.name }}</div>
     </ng-template>
   </kendo-treelist-column>
-  
-  <kendo-treelist-column 
-  *ngFor="let col of columns" 
-  [field]="col.field" 
-  [title]="col.name" 
-  [width]="250">
-  </kendo-treelist-column>
 
-  <kendo-treelist-pdf
-    fileName="Parts.pdf"
-    [allPages]="true"
-    paperSize="A4"
-    [repeatHeaders]="true"
+  <kendo-treelist-column
+    *ngFor="let col of columns"
+    [field]="col.field"
+    [title]="col.name"
+    [width]="250"
   >
+  </kendo-treelist-column>
+  <kendo-treelist-pdf fileName="Parts.pdf" [allPages]="true" paperSize="A4" [repeatHeaders]="true">
   </kendo-treelist-pdf>
   <kendo-treelist-excel fileName="Parts.xlsx"></kendo-treelist-excel>
 </kendo-treelist>
