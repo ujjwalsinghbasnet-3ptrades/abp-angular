@@ -1,6 +1,4 @@
-using AbpPoc.Ipbs;
 using AbpPoc.Documents;
-using AbpPoc.PartTests;
 using AbpPoc.Parts;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
@@ -37,9 +35,7 @@ public class AbpPocDbContext :
     ISaasDbContext,
     IIdentityProDbContext
 {
-    public DbSet<Ipb> Ipbs { get; set; } = null!;
     public DbSet<Document> Documents { get; set; } = null!;
-    public DbSet<PartTest> PartTests { get; set; } = null!;
     public DbSet<Part> Parts { get; set; } = null!;
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
 
@@ -143,28 +139,7 @@ public class AbpPocDbContext :
             });
 
         }
-        if (builder.IsHostDatabase())
-        {
-            builder.Entity<PartTest>(b =>
-            {
-                b.ToTable(AbpPocConsts.DbTablePrefix + "PartTests", AbpPocConsts.DbSchema);
-                b.ConfigureByConvention();
-                b.Property(x => x.partNumber).HasColumnName(nameof(PartTest.partNumber)).IsRequired();
-                b.Property(x => x.name).HasColumnName(nameof(PartTest.name)).IsRequired();
-                b.Property(x => x.cageCode).HasColumnName(nameof(PartTest.cageCode)).IsRequired();
-                b.Property(x => x.distributionStatement).HasColumnName(nameof(PartTest.distributionStatement)).IsRequired();
-                b.Property(x => x.toNumber).HasColumnName(nameof(PartTest.toNumber));
-                b.Property(x => x.smr).HasColumnName(nameof(PartTest.smr));
-                b.Property(x => x.niin).HasColumnName(nameof(PartTest.niin));
-                b.Property(x => x.fsc).HasColumnName(nameof(PartTest.fsc));
-                b.Property(x => x.wuc).HasColumnName(nameof(PartTest.wuc));
-                b.Property(x => x.uoc).HasColumnName(nameof(PartTest.uoc));
-                b.Property(x => x.uniqueId).HasColumnName(nameof(PartTest.uniqueId));
-                b.Property(x => x.nsn).HasColumnName(nameof(PartTest.nsn));
-                b.Property(x => x.imageUrl).HasColumnName(nameof(PartTest.imageUrl));
-            });
 
-        }
         if (builder.IsHostDatabase())
         {
             builder.Entity<Document>(b =>
@@ -174,24 +149,6 @@ public class AbpPocDbContext :
                 b.Property(x => x.name).HasColumnName(nameof(Document.name)).IsRequired();
                 b.Property(x => x.size).HasColumnName(nameof(Document.size));
                 b.Property(x => x.type).HasColumnName(nameof(Document.type));
-            });
-
-        }
-        if (builder.IsHostDatabase())
-        {
-            builder.Entity<Ipb>(b =>
-            {
-                b.ToTable(AbpPocConsts.DbTablePrefix + "Ipbs", AbpPocConsts.DbSchema);
-                b.ConfigureByConvention();
-                b.Property(x => x.ipbIndex).HasColumnName(nameof(Ipb.ipbIndex)).IsRequired().HasMaxLength(IpbConsts.ipbIndexMaxLength);
-                b.Property(x => x.figureName).HasColumnName(nameof(Ipb.figureName)).IsRequired().HasMaxLength(IpbConsts.figureNameMaxLength);
-                b.Property(x => x.figureNumber).HasColumnName(nameof(Ipb.figureNumber)).IsRequired().HasMaxLength(IpbConsts.figureNumberMaxLength);
-                b.Property(x => x.toNumber).HasColumnName(nameof(Ipb.toNumber)).HasMaxLength(IpbConsts.toNumberMaxLength);
-                b.Property(x => x.indentureLevel).HasColumnName(nameof(Ipb.indentureLevel)).HasMaxLength(IpbConsts.indentureLevelMaxLength);
-                b.Property(x => x.sourceId).HasColumnName(nameof(Ipb.sourceId)).IsRequired();
-                b.Property(x => x.relatedId).HasColumnName(nameof(Ipb.relatedId)).IsRequired();
-                b.HasOne<Part>().WithMany().HasForeignKey(x => x.sourcePart).OnDelete(DeleteBehavior.SetNull);
-                b.HasOne<Part>().WithMany().HasForeignKey(x => x.relatedPart).OnDelete(DeleteBehavior.SetNull);
             });
 
         }

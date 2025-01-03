@@ -1,12 +1,15 @@
 <div class="container-fluid">
   <div class="demo-card-container w-50 mx-auto">
     <div class="card p-3">
-      <ng-container *ngIf="part()?.imageUrl; else noImageTemplate">
+      <!-- <ng-container *ngIf="part()?.imageUrl; else noImageTemplate">
         <img src="{{ part()?.imageUrl }}" class="card-img-top" />
       </ng-container>
       <ng-template #noImageTemplate>
         <i class="icon-placeholder fa fa-cogs fa-10x mx-auto"></i>
-      </ng-template>
+      </ng-template> -->
+      <ng-container>
+        <i class="icon-placeholder fa fa-cogs fa-10x mx-auto"></i>
+      </ng-container>
       <div class="card-body">
         <form
           [formGroup]="partDetailService.form"

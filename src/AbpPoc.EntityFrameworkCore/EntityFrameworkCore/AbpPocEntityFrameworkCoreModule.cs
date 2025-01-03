@@ -1,10 +1,7 @@
-using AbpPoc.Ipbs;
 using AbpPoc.Documents;
-using AbpPoc.PartTests;
 using AbpPoc.Parts;
 using System;
 using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.Uow;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -64,11 +61,7 @@ public class AbpPocEntityFrameworkCoreModule : AbpModule
             options.AddDefaultRepositories(includeAllEntities: true);
             options.AddRepository<Part, Parts.EfCorePartRepository>();
 
-            options.AddRepository<PartTest, PartTests.EfCorePartTestRepository>();
-
             options.AddRepository<Document, Documents.EfCoreDocumentRepository>();
-
-            options.AddRepository<Ipb, Ipbs.EfCoreIpbRepository>();
 
         });
 
