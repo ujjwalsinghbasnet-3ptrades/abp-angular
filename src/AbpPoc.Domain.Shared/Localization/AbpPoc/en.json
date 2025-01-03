@@ -151,6 +151,21 @@
     "Maxtype": "Max type",
     "sourcePart": "source part",
     "relatedPart": "related part",
-    "Permission:Ipbs": "Ipbs"
+    "Permission:Ipbs": "Ipbs",
+    "source": "source",
+    "related": "related",
+    "Ipbs": "Ipbs",
+    "NewIpb": "New Ipb",
+    "Ipb": "Ipb",
+    "Menu:Ipbs": "Ipbs",
+    "figureName": "figure Name",
+    "figureNumber": "figure Number",
+    "indentureLevel": "indenture Level",
+    "MinfigureName": "Min figure Name",
+    "MinfigureNumber": "Min figure Number",
+    "MinindentureLevel": "Min indenture Level",
+    "MaxfigureName": "Max figure Name",
+    "MaxfigureNumber": "Max figure Number",
+    "MaxindentureLevel": "Max indenture Level"
   }
 }

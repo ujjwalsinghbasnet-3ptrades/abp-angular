@@ -1,3 +1,5 @@
+using Volo.Abp.AutoMapper;
+using AbpPoc.Ipbs;
 using AbpPoc.Documents;
 using System;
 using AbpPoc.Shared;
@@ -25,5 +27,8 @@ public class AbpPocApplicationAutoMapperProfile : Profile
 
         CreateMap<Part, LookupDto<Guid>>().ForMember(dest => dest.DisplayName, opt => opt.MapFrom(src => src.name));
         CreateMap<Part, LookupDto<Guid>>().ForMember(dest => dest.DisplayName, opt => opt.MapFrom(src => src.name));
+
+        CreateMap<Ipb, IpbDto>();
+        CreateMap<IpbWithNavigationProperties, IpbWithNavigationPropertiesDto>();
     }
 }

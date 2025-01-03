@@ -53,7 +53,7 @@ const routes: Routes = [
     path: 'text-template-management',
     loadChildren: () =>
       import('@volo/abp.ng.text-template-management').then(m =>
-        m.TextTemplateManagementModule.forLazy()
+        m.TextTemplateManagementModule.forLazy(),
       ),
   },
   {
@@ -65,7 +65,7 @@ const routes: Routes = [
     path: 'gdpr-cookie-consent',
     loadChildren: () =>
       import('./gdpr-cookie-consent/gdpr-cookie-consent.module').then(
-        m => m.GdprCookieConsentModule
+        m => m.GdprCookieConsentModule,
       ),
   },
   {
@@ -78,12 +78,15 @@ const routes: Routes = [
   {
     path: 'parts/:id',
     loadChildren: () =>
-      import('./components/part-details/part-details-page/part-details.module').then(m => m.PartDetailsModule),
+      import('./components/part-details/part-details-page/part-details.module').then(
+        m => m.PartDetailsModule,
+      ),
   },
   {
     path: 'documents',
     loadChildren: () => import('./documents/document/document.module').then(m => m.DocumentModule),
   },
+  { path: 'ipbs', loadChildren: () => import('./ipbs/ipb/ipb.module').then(m => m.IpbModule) },
 ];
 
 @NgModule({

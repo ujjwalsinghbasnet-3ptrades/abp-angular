@@ -45,10 +45,9 @@ import { PARTS_PART_ROUTE_PROVIDER } from './parts/part/providers/part-route.pro
 import { DOCUMENTS_DOCUMENT_ROUTE_PROVIDER } from './documents/document/providers/document-route.provider';
 import { ExcelModule, PDFModule, TreeListModule } from '@progress/kendo-angular-treelist';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
-import { InputsModule } from "@progress/kendo-angular-inputs";
+import { InputsModule } from '@progress/kendo-angular-inputs';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
-
-
+import { IPBS_IPB_ROUTE_PROVIDER } from './ipbs/ipb/providers/ipb-route.provider';
 
 @NgModule({
   declarations: [AppComponent],
@@ -114,6 +113,7 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
     provideTextTemplateManagementConfig(),
     PARTS_PART_ROUTE_PROVIDER,
     DOCUMENTS_DOCUMENT_ROUTE_PROVIDER,
+    IPBS_IPB_ROUTE_PROVIDER,
   ],
   bootstrap: [AppComponent],
 })

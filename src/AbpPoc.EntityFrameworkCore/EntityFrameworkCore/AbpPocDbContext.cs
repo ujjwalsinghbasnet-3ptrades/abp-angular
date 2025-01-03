@@ -1,3 +1,4 @@
+using AbpPoc.Ipbs;
 using AbpPoc.Documents;
 using AbpPoc.Parts;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +36,7 @@ public class AbpPocDbContext :
     ISaasDbContext,
     IIdentityProDbContext
 {
+    public DbSet<Ipb> Ipbs { get; set; } = null!;
     public DbSet<Document> Documents { get; set; } = null!;
     public DbSet<Part> Parts { get; set; } = null!;
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
@@ -149,6 +151,21 @@ public class AbpPocDbContext :
                 b.Property(x => x.name).HasColumnName(nameof(Document.name)).IsRequired();
                 b.Property(x => x.size).HasColumnName(nameof(Document.size));
                 b.Property(x => x.type).HasColumnName(nameof(Document.type));
+            });
+
+        }
+        if (builder.IsHostDatabase())
+        {
+            builder.Entity<Ipb>(b =>
+            {
+                b.ToTable(AbpPocConsts.DbTablePrefix + "Ipbs", AbpPocConsts.DbSchema);
+                b.ConfigureByConvention();
+                b.Property(x => x.figureName).HasColumnName(nameof(Ipb.figureName)).IsRequired().HasMaxLength(IpbConsts.figureNameMaxLength);
+                b.Property(x => x.figureNumber).HasColumnName(nameof(Ipb.figureNumber)).IsRequired().HasMaxLength(IpbConsts.figureNumberMaxLength);
+                b.Property(x => x.toNumber).HasColumnName(nameof(Ipb.toNumber)).HasMaxLength(IpbConsts.toNumberMaxLength);
+                b.Property(x => x.indentureLevel).HasColumnName(nameof(Ipb.indentureLevel)).HasMaxLength(IpbConsts.indentureLevelMaxLength);
+                b.HasOne<Part>().WithMany().HasForeignKey(x => x.sourceId).OnDelete(DeleteBehavior.SetNull);
+                b.HasOne<Part>().WithMany().HasForeignKey(x => x.relatedId).OnDelete(DeleteBehavior.SetNull);
             });
 
         }

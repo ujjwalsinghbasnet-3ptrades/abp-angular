@@ -196,8 +196,8 @@ namespace AbpPoc.Migrations
 
                     b.Property<string>("figureNumber")
                         .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
                         .HasColumnName("figureNumber");
 
                     b.Property<string>("indentureLevel")
@@ -205,148 +205,24 @@ namespace AbpPoc.Migrations
                         .HasColumnType("character varying(8)")
                         .HasColumnName("indentureLevel");
 
-                    b.Property<string>("ipbIndex")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("character varying(8)")
-                        .HasColumnName("ipbIndex");
-
-                    b.Property<string>("relatedId")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("relatedId");
-
-                    b.Property<Guid?>("relatedPart")
+                    b.Property<Guid?>("relatedId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("sourceId")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("sourceId");
-
-                    b.Property<Guid?>("sourcePart")
+                    b.Property<Guid?>("sourceId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("toNumber")
-                        .HasMaxLength(32)
-                        .HasColumnType("character varying(32)")
+                        .HasMaxLength(512)
+                        .HasColumnType("character varying(512)")
                         .HasColumnName("toNumber");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("relatedPart");
+                    b.HasIndex("relatedId");
 
-                    b.HasIndex("sourcePart");
+                    b.HasIndex("sourceId");
 
                     b.ToTable("AppIpbs", (string)null);
-                });
-
-            modelBuilder.Entity("AbpPoc.PartTests.PartTest", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("character varying(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("DeleterId");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("DeletionTime");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false)
-                        .HasColumnName("IsDeleted");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("LastModificationTime");
-
-                    b.Property<Guid?>("LastModifierId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("LastModifierId");
-
-                    b.Property<string>("cageCode")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("cageCode");
-
-                    b.Property<string>("distributionStatement")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("distributionStatement");
-
-                    b.Property<string>("fsc")
-                        .HasColumnType("text")
-                        .HasColumnName("fsc");
-
-                    b.Property<string>("imageUrl")
-                        .HasColumnType("text")
-                        .HasColumnName("imageUrl");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
-
-                    b.Property<string>("niin")
-                        .HasColumnType("text")
-                        .HasColumnName("niin");
-
-                    b.Property<string>("nsn")
-                        .HasColumnType("text")
-                        .HasColumnName("nsn");
-
-                    b.Property<string>("partNumber")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("partNumber");
-
-                    b.Property<string>("smr")
-                        .HasColumnType("text")
-                        .HasColumnName("smr");
-
-                    b.Property<string>("toNumber")
-                        .HasColumnType("text")
-                        .HasColumnName("toNumber");
-
-                    b.Property<string>("uniqueId")
-                        .HasColumnType("text")
-                        .HasColumnName("uniqueId");
-
-                    b.Property<string>("uoc")
-                        .HasColumnType("text")
-                        .HasColumnName("uoc");
-
-                    b.Property<string>("wuc")
-                        .HasColumnType("text")
-                        .HasColumnName("wuc");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppPartTests", (string)null);
                 });
 
             modelBuilder.Entity("AbpPoc.Parts.Part", b =>
@@ -4499,12 +4375,12 @@ namespace AbpPoc.Migrations
                 {
                     b.HasOne("AbpPoc.Parts.Part", null)
                         .WithMany()
-                        .HasForeignKey("relatedPart")
+                        .HasForeignKey("relatedId")
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("AbpPoc.Parts.Part", null)
                         .WithMany()
-                        .HasForeignKey("sourcePart")
+                        .HasForeignKey("sourceId")
                         .OnDelete(DeleteBehavior.SetNull);
                 });
 
