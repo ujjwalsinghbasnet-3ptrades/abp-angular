@@ -1,0 +1,34 @@
+
+
+@use "sass:map";
+@use "@progress/kendo-theme-bootstrap/dist/bootstrap-nordic.scss" as *;
+
+:root .lpx-theme-dark {
+    --kendo-color-app-surface: #343333;
+    --kendo-color-border: #918b8b;
+    --kendo-color-surface: #343333;
+    --kendo-color-on-app-surface: #ffffff;
+    --kendo-color-on-surface: #000000;
+    --kendo-color-surface-alt: #3d3d3d;
+    --kendo-color-border-alt: #918b8b;
+  }
+$kendo-colors: map.merge($kendo-colors, ( app-surface: #f8f8f8, on-app-surface: #111111, subtle: rgba(0, 0, 0, 0.54)));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('base', #f5f5f5, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('primary', #ff6358, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('secondary', #666666, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('tertiary', #03a9f4, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('light', #ebebeb, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('dark', #3d3d3d, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('inverse', #3d3d3d, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('info', #0058e9, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('success', #37b400, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('warning', #ffc000, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('error', #f31700, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('series-a', #ff6358, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('series-b', #ffe162, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('series-c', #4cd180, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('series-d', #4b5ffa, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('series-e', #ac58ff, 'bootstrap'));
+$kendo-colors: map.merge($kendo-colors, k-generate-color-variations('series-f', #ff5892, 'bootstrap'));
+
+@include kendo-theme--styles();

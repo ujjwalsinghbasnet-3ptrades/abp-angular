@@ -2520,7 +2520,12 @@
   resolved "https://registry.yarnpkg.com/@progress/kendo-theme-core/-/kendo-theme-core-10.0.1.tgz#18530a15bf23229139db3f5dcad0eed9aac3e3fd"
   integrity sha512-DbMt1c/zXTS54Q65RFXlEnw7iUcCGkh/s7ZLvxG+gS9ZbODeFGku7wHsfJfrURz02HFwrbvH7cFHiEqvwnGE5g==
 
-"@progress/kendo-theme-default@10.0.1", "@progress/kendo-theme-default@^10.0.1":
+"@progress/kendo-theme-core@10.1.0":
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-theme-core/-/kendo-theme-core-10.1.0.tgz#e07fcd107b0a8165fde07abd26fe09806024b9a5"
+  integrity sha512-2K8vxuM0O9UVmvuSIgLvb0MrV4ZHrOKH/ZHb8ePKXV5QnE5rH7PE+8Y8uuh7yQ0+Pmkp33aHLxju3iRa6zD95Q==
+
+"@progress/kendo-theme-default@10.0.1":
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/@progress/kendo-theme-default/-/kendo-theme-default-10.0.1.tgz#f3b1a7574ac5474d68db16fdec9c2a009baec3ef"
   integrity sha512-wc5IigmG32+xfvUj8IAWHdMQBCu3HLG/7ZBNiY7X+puBMSkbTjDk8mwWhlRagje9wltEd1GPGGDVOY7oCqRU8g==
@@ -2529,12 +2534,28 @@
     "@progress/kendo-theme-core" "10.0.1"
     "@progress/kendo-theme-utils" "10.0.1"
 
+"@progress/kendo-theme-default@^10.1.0":
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-theme-default/-/kendo-theme-default-10.1.0.tgz#ea77f18e4324ae538919fec019e27ba920a761b7"
+  integrity sha512-9FU4NoQyoDg8gnQBCU959LRB4z52u/LcXkDWEj42JMpQDR5OmfTbeoykrJhWaCfEdHwO7Cb3FkuHxPLeMEpQkQ==
+  dependencies:
+    "@progress/kendo-svg-icons" "^4.0.0"
+    "@progress/kendo-theme-core" "10.1.0"
+    "@progress/kendo-theme-utils" "10.1.0"
+
 "@progress/kendo-theme-utils@10.0.1":
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/@progress/kendo-theme-utils/-/kendo-theme-utils-10.0.1.tgz#904d8ca775e75989b62441ed593f1f4e03d4e812"
   integrity sha512-QkNEuKcR5I3elLNHDbxG+OHwYMshKdZq9zw48ZAG17w0GU9F3wHl7rlv05eegk2ncpvyKc8SvogZTWX4uR49rQ==
   dependencies:
     "@progress/kendo-theme-core" "10.0.1"
+
+"@progress/kendo-theme-utils@10.1.0":
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-theme-utils/-/kendo-theme-utils-10.1.0.tgz#4d6551bc592fc03b3ba87e0ec1a894a550cbff3a"
+  integrity sha512-gJel4vBrZyZVkNdydwSdE5SJw785kSA+fNMAIcg+HvYEORYdnmH7NaSeI8zjeH1Kts1C85QyBiCIAx1XDGCL/w==
+  dependencies:
+    "@progress/kendo-theme-core" "10.1.0"
 
 "@progress/pako-esm@^1.0.1":
   version "1.0.1"

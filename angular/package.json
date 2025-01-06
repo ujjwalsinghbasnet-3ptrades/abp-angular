@@ -55,7 +55,7 @@
     "@progress/kendo-popup-common": "^1.9.2",
     "@progress/kendo-svg-icons": "^4.0.0",
     "@progress/kendo-theme-bootstrap": "^10.0.1",
-    "@progress/kendo-theme-default": "^10.0.1",
+    "@progress/kendo-theme-default": "^10.1.0",
     "@volo/abp.commercial.ng.ui": "~9.0.2",
     "@volo/abp.ng.account": "~9.0.2",
     "@volo/abp.ng.audit-logging": "~9.0.2",
