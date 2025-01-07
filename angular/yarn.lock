@@ -2195,7 +2195,7 @@
   dependencies:
     "@progress/pako-esm" "^1.0.1"
 
-"@progress/kendo-angular-buttons@^17.2.0":
+"@progress/kendo-angular-buttons@17.2.0":
   version "17.2.0"
   resolved "https://registry.yarnpkg.com/@progress/kendo-angular-buttons/-/kendo-angular-buttons-17.2.0.tgz#cdce4da2718b69dab13cd19acee5e6927dbf4aeb"
   integrity sha512-pS0PqKuvjITzHKeXkLcYM0XVORHqQgNELNL9lij75uXtSCRO/QHh+0uPhr9fdLfXnAQ/VsD2A7lcYzPi4Muwig==

@@ -74,6 +74,23 @@ abp-advanced-entity-filters-toggle {
   display: block !important;
 }
 
+.btn-primary {
+  -bs-btn-color: #fff;
+  --bs-btn-bg: var(--kendo-color-primary);
+  --bs-btn-border-color: var(--kendo-color-primary);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--kendo-color-primary);
+  --bs-btn-hover-border-color: var(--kendo-color-primary);
+  --bs-btn-focus-shadow-rgb: 83, 117, 255;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--kendo-color-primary);
+  --bs-btn-active-border-color: var(--kendo-color-primary);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: var(--kendo-color-primary);
+  --bs-btn-disabled-border-color: var(--kendo-color-primary);
+}
+
 .modal-content {
   min-width: 800px !important;
   max-height: 80vh !important;

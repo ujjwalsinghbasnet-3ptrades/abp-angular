@@ -4,11 +4,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { KENDO_CARD } from '@progress/kendo-angular-layout';
 import { Router } from '@angular/router';
 import { PermissionDirective } from 'src/app/directives/cardActionDirectives';
+import { WindowsDialogComponent } from '../windows-dialog/windows-dialog.component';
+import { KENDO_BUTTON } from '@progress/kendo-angular-buttons';
 
 @Component({
   selector: 'app-default-card',
   standalone: true,
-  imports: [KENDO_CARD, CommonModule,ThemeSharedModule, PermissionDirective],
+  imports: [KENDO_CARD,KENDO_BUTTON, CommonModule,ThemeSharedModule, PermissionDirective, WindowsDialogComponent],
   templateUrl: './default-card.component.html',
   styleUrl: './default-card.component.scss',
 })

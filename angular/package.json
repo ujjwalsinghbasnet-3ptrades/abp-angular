@@ -27,7 +27,7 @@
     "@angular/platform-browser": "~18.1.0",
     "@angular/platform-browser-dynamic": "~18.1.0",
     "@angular/router": "~18.1.0",
-    "@progress/kendo-angular-buttons": "^17.2.0",
+    "@progress/kendo-angular-buttons": "17.2.0",
     "@progress/kendo-angular-common": "17.2.0",
     "@progress/kendo-angular-dateinputs": "^17.2.0",
     "@progress/kendo-angular-dialog": "^17.2.0",

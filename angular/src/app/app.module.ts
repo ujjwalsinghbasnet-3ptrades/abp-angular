@@ -44,9 +44,9 @@ import { APP_ROUTE_PROVIDER } from './route.provider';
 import { PARTS_PART_ROUTE_PROVIDER } from './parts/part/providers/part-route.provider';
 import { DOCUMENTS_DOCUMENT_ROUTE_PROVIDER } from './documents/document/providers/document-route.provider';
 import { ExcelModule, PDFModule, TreeListModule } from '@progress/kendo-angular-treelist';
-import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { WindowModule } from "@progress/kendo-angular-dialog";
 import { IPBS_IPB_ROUTE_PROVIDER } from './ipbs/ipb/providers/ipb-route.provider';
 
 @NgModule({
@@ -62,7 +62,6 @@ import { IPBS_IPB_ROUTE_PROVIDER } from './ipbs/ipb/providers/ipb-route.provider
     GdprConfigModule,
     AuditLoggingConfigModule,
     TreeListModule,
-    ButtonsModule,
     ExcelModule,
     PDFModule,
     InputsModule,
@@ -70,6 +69,7 @@ import { IPBS_IPB_ROUTE_PROVIDER } from './ipbs/ipb/providers/ipb-route.provider
     SideMenuLayoutModule.forRoot(),
     AccountLayoutModule.forRoot(),
     DropDownsModule,
+    WindowModule,
   ],
   providers: [
     APP_ROUTE_PROVIDER,
